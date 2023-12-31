@@ -2,8 +2,8 @@
 // error_reporting(0);
 session_start();
 date_default_timezone_set('Asia/Kolkata');
-define('BASE_URL', 'http://localhost/KMF-Frontend/KMF-Media-Panel/');
-define('BASE_URL_IMG', 'http://localhost/KMF-Frontend/KMF-Media-Panel/images/');
+define('BASE_URL', 'http://localhost/KMF/KMF-Media-Panel/');
+define('BASE_URL_IMG', 'http://localhost/KMF/KMF-Media-Panel/images/');
 $conn=mysqli_connect('localhost','root','','kmfmedia');
 if(!$conn)
 {

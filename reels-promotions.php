@@ -1,3 +1,5 @@
+<?php include 'db/config.php' ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -73,8 +75,6 @@
     </style>
 
     <style>
-        @charset "UTF-8";
-
         :root {
             --color-brand-primary: hsl(var(--color-brand-primary-h), 43%, 43%);
             --color-brand-primary-h: 251;
@@ -569,6 +569,24 @@
         <!-- end slider -->
 
 
+        <style>
+                                .pricing-list.bounce-invert li:nth-child(2) h2 {
+                                    color: #F55020;
+                                }
+
+                                .pricing-list.bounce-invert li:nth-child(2) {
+                                    border: 2px solid black;
+                                }
+
+                                .pricing-list.bounce-invert li:nth-child(2) .value {
+                                    color: #F55020;
+                                }
+
+                                .pricing-list.bounce-invert li:nth-child(3) li {
+                                    font-weight: 900;
+                                }
+                            </style>
+
         <!-- end project-hero -->
         <section class="content">
             <div class="project-detail">
@@ -622,24 +640,28 @@
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
                         <div class="pricing-container">
                             <ul class="pricing-list bounce-invert">
+
+                            <?php
+                                    $query = mysqli_query($conn, "select * from reels_package where is_active=1 order by rpackage_id asc ");
+                                    $totl = mysqli_num_rows($query);
+                                    if ($totl > 0) {
+                                        $id = 1;
+                                        while ($row = mysqli_fetch_array($query)) {
+                                    ?>
                                 <li>
                                     <ul class="pricing-wrapper">
                                         <li data-type="monthly" class="is-visible">
                                             <header class="pricing-header">
-                                                <h2 style="font-size:42px;">Tester's Bag</h2>
+                                                <h2 style="font-size:42px;"><?=$row['package_name']?></h2>
                                                 <div class="price">
                                                     <span class="currency">₹</span>
-                                                    <span class="value">10,000</span>
+                                                    <span class="value"><?=$row['package_price']?></span>
                                                     <span class="duration"></span>
                                                 </div>
                                             </header>
                                             <div class="pricing-body">
                                                 <ul class="pricing-features">
-                                                    <li><em>10</em> Big pages ✅</li>
-                                                    <li><em>30</em> Micro Pages ✅ </li>
-                                                    <li><em>High</em> Reach ✅ </li>
-                                                    <li><em>Possibilities of trending</em> ✅</li>
-                                                    <li><em>Reels + story promotion <br> <br> from all the pages ✅</em></li>
+                                                    <li><em><?=$row['package_desc']?></em></li>
                                                 </ul>
                                             </div>
                                             <footer class="pricing-footer">
@@ -671,7 +693,18 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="exclusive">
+
+                                <?php $id++;
+                                        }
+                                    } else { ?>
+                                        <div>
+                                            <p salign="center">No record found</p>
+                                        </div>
+                                    <?php } ?>
+
+
+
+                                <!-- <li class="exclusive">
                                     <ul class="pricing-wrapper">
                                         <li data-type="monthly" class="is-visible">
                                             <header class="pricing-header">
@@ -769,7 +802,7 @@
                                             </footer>
                                         </li>
                                     </ul>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
 
@@ -1268,7 +1301,7 @@
                                 color: #f3b6ab;
                             }
 
-                            
+
 
                             .value {
                                 font-size: 7rem;

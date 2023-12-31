@@ -1,38 +1,27 @@
 <?php
-
-// error_reporting(0);
-session_start();
-date_default_timezone_set('Asia/Kolkata');
-define('BASE_URL', 'http://localhost/KMF/KMF-Media-Panel/');
-define('BASE_URL_IMG', 'http://localhost/KMF/KMF-Media-Panel/images/');
-$conn = mysqli_connect('localhost', 'root', '', 'kmfmedia');
-if (!$conn) {
-	die('Database Connection Failed !');
-}
-
-$date = date('d-m-Y') . ' ' . date('h:m:s');
-
+include('db/config.php');
 include('includes/header.php');
-if (isset($_POST['add_slider'])) {
+include('lock2.php');
 
-	$blog_title = $_POST['blog_title'];
-	$blog_content = $_POST['blog_content'];
-	$main_page_desc = $_POST['main_page_desc'];
-	$blog_img = 'blog_img' . rand(0, 1000) . '_' . $_FILES['blog_img']['name'];
+$edit_id = $_GET['edit_rec'];
+if (isset($_POST['update_slider'])) {
+
+	$package_name = $_POST['package_name'];
+	$package_price = $_POST['package_price'];
+	$package_desc = $_POST['package_desc'];
 	$is_active = ($_POST['is_active'] != '' ? 1 : 2);
 
-	$query = mysqli_query($conn, "insert into blog
-    	                                             SET blog_title='$blog_title',
-                                                         blog_content='$blog_content',
-														 main_page_desc='$main_page_desc',
-														 blog_img='$blog_img',
-                                                         is_active='$is_active'");
+	$query = mysqli_query($conn, "update reels_package
+    	                                             SET package_name='$package_name',
+													 package_price='$package_price',
+													 package_desc='$package_desc',
+    	                                             is_active=$is_active where rpackage_id=$edit_id");
 
 	if ($query) {
-		move_uploaded_file($_FILES['blog_img']['tmp_name'], 'images/blog-image/' . $blog_img . '');
-		header('Location:manage-blogs.php');
+		header('Location:manage-reels-packages.php');
 	}
 }
+$details = mysqli_fetch_array(mysqli_query($conn, "select * from reels_package where rpackage_id=$edit_id"));
 ?>
 <!--begin::Body-->
 
@@ -99,6 +88,7 @@ if (isset($_POST['add_slider'])) {
 						<!--end::Header Menu Wrapper-->
 						<!--begin::Topbar-->
 						<div class="topbar">
+
 							<!--begin::Languages-->
 							<div class="dropdown">
 								<!--begin::Toggle-->
@@ -111,7 +101,6 @@ if (isset($_POST['add_slider'])) {
 
 							</div>
 							<!--end::Languages-->
-
 
 							<!--begin::User-->
 							<div class="topbar-item">
@@ -137,7 +126,7 @@ if (isset($_POST['add_slider'])) {
 							<!--begin::Info-->
 							<div class="d-flex align-items-center flex-wrap mr-2">
 								<!--begin::Page Title-->
-								<h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Add New Blog</h5>
+								<h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Edit Reels Package</h5>
 								<!--end::Page Title-->
 
 							</div>
@@ -154,11 +143,11 @@ if (isset($_POST['add_slider'])) {
 							<div class="card card-custom gutter-b">
 								<div class="card-header flex-wrap py-3">
 									<div class="card-title">
-										<!-- <h3 class="card-label">Add Slider</h3> -->
+										<!-- <h3 class="card-label">Edit Slider</h3> -->
 									</div>
 									<div class="card-toolbar">
 										<!--begin::Button-->
-										<a href="<?= BASE_URL ?>manage-blogs.php" class="btn btn-primary font-weight-bolder">
+										<a href="<?= BASE_URL ?>manage-reels-packages.php" class="btn btn-primary font-weight-bolder">
 											<span class="svg-icon svg-icon-md">
 												<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
 												<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -179,49 +168,43 @@ if (isset($_POST['add_slider'])) {
 									<div class=" card-custom gutter-b example example-compact">
 
 
-										<form method="post" enctype="multipart/form-data">
+										<!--begin::Form-->
+										<form action="" enctype="multipart/form-data" method="post" id="edit-slider">
 											<div class="card-body">
 
 
 
 
 												<div class="form-group">
-													<label for="exampleInputPassword1">Blog Title
+													<label for="exampleInputPassword1">Package Name
 														<span class="text-danger">*</span></label>
-													<input type="text" name="blog_title" value="" class="form-control" autocomplete="off" placeholder="Name">
+													<input type="text" name="package_name" value="<?= $details['package_name'] ?>" class="form-control" autocomplete="off" placeholder="Heading">
 												</div>
+
 												<div class="form-group">
-													<label for="exampleInputPassword1">Blog Content
+													<label for="exampleInputPassword1">Package Price
 														<span class="text-danger">*</span></label>
-													<input type="text" name="blog_content" value="" class="form-control" autocomplete="off" placeholder="Name">
+													<input type="text" name="package_price" value="<?= $details['package_price'] ?>" class="form-control" autocomplete="off" placeholder="Heading">
 												</div>
 
 												<div  class="form-group">
-													<label for="exampleInputPassword1">Main Page Content
+													<label for="exampleInputPassword1">Package Content
 														<span class="text-danger">*</span></label>
-													<textarea name="main_page_desc" id="editor" cols="30" rows="10"></textarea>
+													<textarea name="package_desc" id="editor" cols="30" rows="10"><?= $details['package_desc'] ?></textarea>
 												</div>
-
-
-												<div class="form-group">
-													<label for="exampleInputPassword1">Blog Image
-														<span class="text-danger">*</span></label>
-													<input type="file" name="blog_img" value="" class="form-control">
-												</div>
-
 
 												<div class="form-group">
 													<label for="exampleInputPassword1">Status</label>
 													<span class="switch switch-md switch-icon">
 														<label>
-															<input type="checkbox" name="is_active" value="1">
+															<input type="checkbox" name="is_active" value="1" <?= ($details['is_active'] == 1 ? 'checked' : '') ?>>
 															<span></span>
 														</label>
 													</span>
 												</div>
 											</div>
 											<div class="card-footer">
-												<button type="submit" name="add_slider" class="btn btn-primary mr-2">Add</button>
+												<button type="submit" name="update_slider" class="btn btn-primary mr-2">Update</button>
 												<button type="reset" class="btn btn-secondary">Reset</button>
 											</div>
 										</form><!--end::Form-->

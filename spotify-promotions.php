@@ -1,3 +1,4 @@
+<?php include 'db/config.php' ?>
 <!doctype html>
 <html lang="en">
 
@@ -73,8 +74,6 @@
     </style>
 
     <style>
-        @charset "UTF-8";
-
         :root {
             --color-brand-primary: hsl(var(--color-brand-primary-h), 43%, 43%);
             --color-brand-primary-h: 251;
@@ -620,59 +619,89 @@
                         </section>
 
                         <section>
+                            <style>
+                                .pricing-list.bounce-invert li:nth-child(2) h2 {
+                                    color: #1bbc9d;
+                                }
+
+                                .pricing-list.bounce-invert li:nth-child(2) {
+                                    border: 2px solid black;
+                                }
+
+                                .pricing-list.bounce-invert li:nth-child(2) .value {
+                                    color: #1bbc9d;
+                                }
+
+                                .pricing-list.bounce-invert li:nth-child(3) li {
+                                    font-weight: 900;
+                                }
+                            </style>
 
                             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
                             <div class="pricing-container">
                                 <ul class="pricing-list bounce-invert">
-                                    <li>
-                                        <ul class="pricing-wrapper">
-                                            <li data-type="monthly" class="is-visible">
-                                                <header class="pricing-header">
-                                                    <h2 style="font-size:42px;">Algorithm Boost</h2>
-                                                    <div class="price">
-                                                        <span class="currency">₹</span>
-                                                        <span class="value">4000</span>
-                                                        <span class="duration"></span>
-                                                    </div>
-                                                </header>
-                                                <div class="pricing-body">
-                                                    <ul class="pricing-features">
-                                                        <li><em>10k+</em> Streams ✅</li>
-                                                        <li><em>Indian Audience ✅</em></li>
-                                                        <li><em>Organic ✅ </em></li>
-                                                        <li>Your song will be pushed <br><br>on Algorithmic playlists <br><br>like Radio,Release Radar,<br><br>Your Daily mix,etc.<br><br> created by Spotify.</li>
-                                                    </ul>
-                                                </div>
-                                                <footer class="pricing-footer">
-                                                    <a class="select" href="contact-us.php">Book Now</a>
-                                                </footer>
+                                    <?php
+                                    $query = mysqli_query($conn, "select * from spotify_package where is_active=1 order by spackage_id asc ");
+                                    $totl = mysqli_num_rows($query);
+                                    if ($totl > 0) {
+                                        $id = 1;
+                                        while ($row = mysqli_fetch_array($query)) {
+                                    ?>
+                                            <li>
+                                                <ul class="pricing-wrapper">
+                                                    <li data-type="monthly" class="is-visible">
+                                                        <header class="pricing-header">
+                                                            <h2 style="font-size:42px;"><?= $row['package_name'] ?></h2>
+                                                            <div class="price">
+                                                                <span class="currency">₹</span>
+                                                                <span class="value"><?= $row['package_price'] ?></span>
+                                                                <span class="duration"></span>
+                                                            </div>
+                                                        </header>
+                                                        <div class="pricing-body">
+                                                            <ul class="pricing-features">
+                                                                <li><em><?= $row['package_desc'] ?></em></li>
+                                                            </ul>
+                                                        </div>
+                                                        <footer class="pricing-footer">
+                                                            <a class="select" href="contact-us.php">Book Now</a>
+                                                        </footer>
+                                                    </li>
+                                                    <li data-type="yearly" class="is-hidden">
+                                                        <header class="pricing-header">
+                                                            <h2 style="font-size:42px;">Basic</h2>
+                                                            <div class="price">
+                                                                <span class="currency">$</span>
+                                                                <span class="value">320</span>
+                                                                <span class="duration">yr</span>
+                                                            </div>
+                                                        </header>
+                                                        <div class="pricing-body">
+                                                            <ul class="pricing-features">
+                                                                <li><em>5</em> Email Accounts</li>
+                                                                <li><em>1</em> Template Style</li>
+                                                                <li><em>25</em> Products Loaded</li>
+                                                                <li><em>1</em> Image per Product</li>
+                                                                <li><em>Unlimited</em> Bandwidth</li>
+                                                                <li><em>24/7</em> Support</li>
+                                                            </ul>
+                                                        </div>
+                                                        <footer class="pricing-footer">
+                                                            <a class="select" href="contact-us.php">Book Now</a>
+                                                        </footer>
+                                                    </li>
+                                                </ul>
                                             </li>
-                                            <li data-type="yearly" class="is-hidden">
-                                                <header class="pricing-header">
-                                                    <h2 style="font-size:42px;">Basic</h2>
-                                                    <div class="price">
-                                                        <span class="currency">$</span>
-                                                        <span class="value">320</span>
-                                                        <span class="duration">yr</span>
-                                                    </div>
-                                                </header>
-                                                <div class="pricing-body">
-                                                    <ul class="pricing-features">
-                                                        <li><em>5</em> Email Accounts</li>
-                                                        <li><em>1</em> Template Style</li>
-                                                        <li><em>25</em> Products Loaded</li>
-                                                        <li><em>1</em> Image per Product</li>
-                                                        <li><em>Unlimited</em> Bandwidth</li>
-                                                        <li><em>24/7</em> Support</li>
-                                                    </ul>
-                                                </div>
-                                                <footer class="pricing-footer">
-                                                    <a class="select" href="contact-us.php">Book Now</a>
-                                                </footer>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="exclusive">
+
+                                        <?php $id++;
+                                        }
+                                    } else { ?>
+                                        <div>
+                                            <p salign="center">No record found</p>
+                                        </div>
+                                    <?php } ?>
+
+                                    <!-- <li class="exclusive">
                                         <ul class="pricing-wrapper">
                                             <li data-type="monthly" class="is-visible">
                                                 <header class="pricing-header">
@@ -730,8 +759,8 @@
                                                 </footer>
                                             </li>
                                         </ul>
-                                    </li>
-                                    <li>
+                                    </li> -->
+                                    <!-- <li>
                                         <ul class="pricing-wrapper">
                                             <li data-type="monthly" class="is-visible">
                                                 <header class="pricing-header">
@@ -777,7 +806,7 @@
                                                 </footer>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
 
