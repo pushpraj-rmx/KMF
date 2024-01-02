@@ -6,20 +6,31 @@ include('lock2.php');
 $edit_id = $_GET['edit_rec'];
 if (isset($_POST['update_slider'])) {
 
-	$testimonials_name = $_POST['testimonials_name'];
-	$testimonials_quote = $_POST['testimonials_quote'];
+	$portfolio_title = $_POST['portfolio_title'];
+	$portfolio_img = $_POST['portfolio_img'];
+
 	$is_active = ($_POST['is_active'] != '' ? 1 : 2);
 
-	$query = mysqli_query($conn, "update testimonials
-    	                                             SET testimonials_name='$testimonials_name',
-													 testimonials_quote='$testimonials_quote',
-    	                                             is_active=$is_active where testimonials_id=$edit_id");
+	if (!empty($_FILES['portfolio_img']['name'])) {
+		$portfolio_img = 'img_' . rand(0, 1000) . '_' . $_FILES['portfolio_img']['name'];
+	} else {
+		$portfolio_img = $_POST['portfolio_img_hidden'];
+	}
+
+	$query = mysqli_query($conn, "update portfolio
+    	                                             SET portfolio_title='$portfolio_title',
+													 portfolio_img='$portfolio_img',
+    	                                             is_active=$is_active where portfolio_id=$edit_id");
 
 	if ($query) {
-		header('Location:manage-testimonials.php');
+		if (!empty($_FILES['portfolio_img']['name'])) {
+			move_uploaded_file($_FILES['portfolio_img']['tmp_name'], 'images/blog-image/' . $portfolio_img . '');
+			unlink('images/blog-image/' . $_POST['portfolio_img_hidden']);
+		}
+		header('Location:manage-portfolio.php');
 	}
 }
-$details = mysqli_fetch_array(mysqli_query($conn, "select * from testimonials where testimonials_id=$edit_id"));
+$details = mysqli_fetch_array(mysqli_query($conn, "select * from portfolio where portfolio_id=$edit_id"));
 ?>
 <!--begin::Body-->
 
@@ -174,15 +185,19 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from testimonials wh
 
 
 												<div class="form-group">
-													<label for="exampleInputPassword1">Testimonial Name
+													<label for="exampleInputPassword1">Portfolio Title
 														<span class="text-danger">*</span></label>
-													<input type="text" name="testimonials_name" value="<?= $details['testimonials_name'] ?>" class="form-control" autocomplete="off" placeholder="Heading">
+													<input type="text" name="portfolio_title" value="<?= $details['portfolio_title'] ?>" class="form-control" autocomplete="off" placeholder="Heading">
 												</div>
 
 												<div class="form-group">
-													<label for="exampleInputPassword1">Testimonial
+													<label for="exampleInputPassword1">Portfolio Image
 														<span class="text-danger">*</span></label>
-													<input type="text" name="testimonials_quote" value="<?= $details['testimonials_quote'] ?>" class="form-control" autocomplete="off" placeholder="Heading">
+													<input type="file" name="portfolio_img" value="" class="form-control">
+													<?php if (!empty($details['portfolio_img'])) { ?>
+														<img src="<?= BASE_URL_IMG ?>blog-image/<?= $details['portfolio_img'] ?>" width='50' class="mt-3">
+													<?php } ?>
+													<input type="hidden" name="portfolio_img_hidden" value="<?= $details['portfolio_img'] ?>">
 												</div>
 
 												<div class="form-group">

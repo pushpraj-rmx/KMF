@@ -15,14 +15,18 @@ $date = date('d-m-Y') . ' ' . date('h:m:s');
 include('includes/header.php');
 if (isset($_POST['add_slider'])) {
 
-	$testimonials_title = $_POST['testimonials_title'];
-	$testimonials_content = $_POST['testimonials_content'];
+	$testimonials_name = $_POST['testimonials_name'];
+	$testimonials_quote = $_POST['testimonials_quote'];
 	$is_active = ($_POST['is_active'] != '' ? 1 : 2);
 
 	$query = mysqli_query($conn, "insert into testimonials
-    	                                             SET testimonials_title='$testimonials_title',
-                                                         testimonials_content='$testimonials_content',
+    	                                             SET testimonials_name='$testimonials_name',
+                                                         testimonials_quote='$testimonials_quote',
                                                          is_active='$is_active'");
+	if ($query) {
+
+		header('Location:manage-testimonials.php');
+	}
 }
 ?>
 <!--begin::Body-->

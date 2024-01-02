@@ -44,13 +44,7 @@
 </head>
 
 <body>
-  <div class="preloader"> <img src="images/preloader.gif" alt="Image">
-    <ul class="text-rotater">
-      <li>Hangin there</li>
-      <li>Still loading</li>
-      <li>Almost done</li>
-    </ul>
-  </div>
+   
   <!-- end preloader -->
   <div class="transition-overlay"></div>
   <!-- end transition-overlay -->

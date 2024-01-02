@@ -47,14 +47,7 @@
 </head>
 
 <body>
-  <div class="preloader"> <img src="images/preloader.gif" alt="Image">
-    <ul class="text-rotater">
-      <li>Tuning Up...</li>
-      <li>Melody Building...</li>
-      <li>Rocking On...</li>
-    </ul>
-  </div>
-  <!-- end preloader -->
+
   <div class="transition-overlay"></div>
   <!-- end transition-overlay -->
   <main>
@@ -535,37 +528,56 @@
         <h2 class="ce">What People are saying...</h2>
       </div>
       <hr>
-      <div class="testimonial-section">
-        <div class="testimonial">
-          <blockquote>As an indie artist, this platform gave my music the exposure it deserved. The support and feedback from the community were invaluable</blockquote>
-          <p class="author">- Atul Garg</p>
-        </div>
-        <div class="testimonial">
-          <blockquote>Working with this team was a game-changer for my band. They not only promoted our music but also provided expert guidance on branding.</blockquote>
-          <p class="author">- Pritam Arora</p>
-        </div>
-        <div class="testimonial">
-          <blockquote>I was struggling to find my audience until I joined this promotion service. The targeted campaigns increased my social media following and boosted my Spotify streams.</blockquote>
-          <p class="author">- Sakshi Garg</p>
-        </div>
-        <!-- Add more testimonials as needed -->
-      </div>
 
-      <div class="testimonial-sectionn">
-        <div class="testimoniall">
-          <blockquote>The marketing strategies employed by this platform are unmatched. They understood my unique sound and crafted a tailored campaign that resonated with my target audience. </blockquote>
-          <p class="author">- Suraj Arora</p>
+      <section style="margin: 50px 0px;">
+        <div class="c-testimonials">
+          <ul class="c-testimonials__items swiper-wrapper">
+
+            <?php
+            $query = mysqli_query($conn, "select * from testimonials where is_active=1 order by testimonials_id asc ");
+            $totl = mysqli_num_rows($query);
+            if ($totl > 0) {
+              $id = 1;
+              while ($row = mysqli_fetch_array($query)) {
+            ?>
+
+                <li class="c-testimonials__item c-card-testimonial swiper-slide">
+                  <div class="c-card-testimonial__description">
+                    <div class="c-card-testimonial__author">
+                      <?= $row['testimonials_name'] ?>
+                    </div>
+
+                    <div class="c-card-testimonial__excerpt">
+                      <i>
+                        <?= $row['testimonials_quote'] ?>
+                      </i>
+                    </div>
+
+                  </div>
+                </li>
+              <?php $id++;
+              }
+            } else { ?>
+              <div>
+                <p salign="center">Can't fetch testimonials, please visit later</p>
+              </div>
+            <?php } ?>
+
+
+          </ul>
+
+          <div class="c-testimonials__pagination"></div>
+
+          <div class="c-testimonials__arrows">
+            <button class="c-testimonials__arrow-prev">Prev</button>
+            <button class="c-testimonials__arrow-next">Next</button>
+          </div>
         </div>
-        <div class="testimoniall">
-          <blockquote>What sets this promotion service apart is their unwavering support. They not only promote your music but also provide valuable advice and resources for independent artists</blockquote>
-          <p class="author">- Drishti Jain</p>
-        </div>
-        <div class="testimoniall">
-          <blockquote>Joining this community was the turning point of my music career. Their expertise and connections opened doors to collaborations and gigs I never thought possible.</blockquote>
-          <p class="author">- Rahul Gandhi</p>
-        </div>
-        <!-- Add more testimonials as needed -->
-      </div>
+
+      </section>
+
+      <hr>
+
 
 
       <style>
@@ -683,11 +695,6 @@
         }
       </style>
 
-
-
-
-
-
       <section class="content">
         <div class="journal">
 
@@ -695,7 +702,6 @@
           <div class="clearfix"></div>
           <div class="container mt-5">
             <div class="row">
-
               <?php
               $query = mysqli_query($conn, "select * from blog where is_active=1 order by blog_id asc ");
               $totl = mysqli_num_rows($query);
@@ -729,11 +735,7 @@
                 </div>
               <?php } ?>
 
-
               <hr class="my-4">
-
-
-
               <!-- end col-6 -->
               <!-- end col-6 -->
             </div>
@@ -795,6 +797,48 @@
       slides[slideIndex - 1].style.display = "block";
       setTimeout(showSlides, 3000); // Change image every 2 seconds
     }
+    // const testimonialsSwiper = new Swiper('.testimonials_swiper', {
+    //   direction: 'horizontal',
+    //   loop: true,
+    //   autoplay: true,
+    //   delay: 1,
+    //   lazy: true,
+    //   lazyPreloadPrevNext: 6,
+    //   pagination: {
+    //     el: '.swiper-pagination',
+    //   },
+
+    //   navigation: {
+    //     nextEl: '.swiper-button-next',
+    //     prevEl: '.swiper-button-prev',
+    //   },
+
+    //   scrollbar: {
+    //     el: '.swiper-scrollbar',
+    //   },
+    //   slidesPerView: 6,
+    // });
+  </script>
+
+
+  <script>
+    var swiper = new Swiper('.c-testimonials', {
+      spaceBetween: 30,
+      effect: 'fade',
+      loop: true,
+      mousewheel: {
+        invert: false,
+      },
+      // autoHeight: true,
+      pagination: {
+        el: '.c-testimonials__pagination',
+        clickable: true
+      },
+      navigation: {
+        nextEl: '.c-testimonials__arrow-next',
+        prevEl: '.c-testimonials__arrow-prev',
+      }
+    });
   </script>
 
 

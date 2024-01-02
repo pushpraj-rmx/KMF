@@ -3,23 +3,16 @@ include('db/config.php');
 include('includes/header.php');
 include('lock2.php');
 
-$edit_id = $_GET['edit_rec'];
-if (isset($_POST['update_slider'])) {
 
-	$testimonials_name = $_POST['testimonials_name'];
-	$testimonials_quote = $_POST['testimonials_quote'];
-	$is_active = ($_POST['is_active'] != '' ? 1 : 2);
+if (isset($_GET['del'])) {
 
-	$query = mysqli_query($conn, "update testimonials
-    	                                             SET testimonials_name='$testimonials_name',
-													 testimonials_quote='$testimonials_quote',
-    	                                             is_active=$is_active where testimonials_id=$edit_id");
-
+	$slider_id = $_GET['del'];
+	$query = mysqli_query($conn, "delete from portfolio where portfolio_id=$slider_id");
 	if ($query) {
-		header('Location:manage-testimonials.php');
+		header('Location:' . BASE_URL . 'manage-portfolio.php');
 	}
 }
-$details = mysqli_fetch_array(mysqli_query($conn, "select * from testimonials where testimonials_id=$edit_id"));
+
 ?>
 <!--begin::Body-->
 
@@ -29,7 +22,7 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from testimonials wh
 	<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
 		<!--begin::Logo-->
 		<a href="index.html">
-			<img alt="Logo" src="<?= BASE_URL ?>assets/media/logos/logo-light.png" />
+			<img alt="Logo" src="<?= BASE_URL ?>/assets/media/logos/logo-light.png" />
 		</a>
 		<!--end::Logo-->
 		<!--begin::Toolbar-->
@@ -47,7 +40,7 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from testimonials wh
 			<!--begin::Topbar Mobile Toggle-->
 			<button class="btn btn-hover-text-primary p-0 ml-2" id="kt_header_mobile_topbar_toggle">
 				<span class="svg-icon svg-icon-xl">
-					<!--begin::Svg Icon | path:<?= BASE_URL ?>assets/media/svg/icons/General/User.svg-->
+					<!--begin::Svg Icon | path:assets/media/svg/icons/General/User.svg-->
 					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 							<polygon points="0 0 24 0 24 24 0 24" />
@@ -66,9 +59,7 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from testimonials wh
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Page-->
 		<div class="d-flex flex-row flex-column-fluid page">
-			<!--begin::Aside-->
 			<?php include('includes/sidebar.php'); ?>
-			<!--end::Aside-->
 			<!--begin::Wrapper-->
 			<div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
 				<!--begin::Header-->
@@ -87,6 +78,8 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from testimonials wh
 						<!--begin::Topbar-->
 						<div class="topbar">
 
+
+
 							<!--begin::Languages-->
 							<div class="dropdown">
 								<!--begin::Toggle-->
@@ -99,14 +92,13 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from testimonials wh
 
 							</div>
 							<!--end::Languages-->
-
 							<!--begin::User-->
 							<div class="topbar-item">
 								<div class="btn btn-icon btn-icon-mobile w-auto btn-clean d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
 									<span class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1">Hi,</span>
 									<span class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3"><?= $_SESSION['username'] ?></span>
 									<span class="symbol symbol-lg-35 symbol-25 symbol-light-success">
-										<span class="symbol-label font-size-h5 font-weight-bold"><?= substr($_SESSION['username'], 0, 1) ?></span>
+										<span class="symbol-label font-size-h5 font-weight-bold"><?= substr($_SESSION['username'], 0, 1); ?></span>
 									</span>
 								</div>
 							</div>
@@ -119,12 +111,13 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from testimonials wh
 				<!--end::Header-->
 				<!--begin::Content-->
 				<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+					<!--begin::Subheader-->
 					<div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
 						<div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
 							<!--begin::Info-->
 							<div class="d-flex align-items-center flex-wrap mr-2">
 								<!--begin::Page Title-->
-								<h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Edit Testimonials</h5>
+								<h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Manage Portflio</h5>
 								<!--end::Page Title-->
 
 							</div>
@@ -132,22 +125,56 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from testimonials wh
 
 						</div>
 					</div>
+					<!--end::Subheader-->
 					<!--begin::Entry-->
 					<div class="d-flex flex-column-fluid">
 						<!--begin::Container-->
 						<div class="container">
+							<!--begin::Dashboard-->
 
 							<!--begin::Card-->
 							<div class="card card-custom gutter-b">
 								<div class="card-header flex-wrap py-3">
 									<div class="card-title">
-										<!-- <h3 class="card-label">Edit Slider</h3> -->
+										<!-- <h3 class="card-label">Manage Slider</h3> -->
 									</div>
+
 									<div class="card-toolbar">
-										<!--begin::Button-->
-										<a href="<?= BASE_URL ?>manage-home-use.php" class="btn btn-primary font-weight-bolder">
+										<div class="dropdown dropdown-inline mr-2">
+											<button type="button" class="btn btn-light-primary font-weight-bolder dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<span class="svg-icon svg-icon-md">
+													<!--begin::Svg Icon | path:assets/media/svg/icons/Design/PenAndRuller.svg-->
+													<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+														<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+															<rect x="0" y="0" width="24" height="24"></rect>
+															<path d="M3,16 L5,16 C5.55228475,16 6,15.5522847 6,15 C6,14.4477153 5.55228475,14 5,14 L3,14 L3,12 L5,12 C5.55228475,12 6,11.5522847 6,11 C6,10.4477153 5.55228475,10 5,10 L3,10 L3,8 L5,8 C5.55228475,8 6,7.55228475 6,7 C6,6.44771525 5.55228475,6 5,6 L3,6 L3,4 C3,3.44771525 3.44771525,3 4,3 L10,3 C10.5522847,3 11,3.44771525 11,4 L11,19 C11,19.5522847 10.5522847,20 10,20 L4,20 C3.44771525,20 3,19.5522847 3,19 L3,16 Z" fill="#000000" opacity="0.3"></path>
+															<path d="M16,3 L19,3 C20.1045695,3 21,3.8954305 21,5 L21,15.2485298 C21,15.7329761 20.8241635,16.200956 20.5051534,16.565539 L17.8762883,19.5699562 C17.6944473,19.7777745 17.378566,19.7988332 17.1707477,19.6169922 C17.1540423,19.602375 17.1383289,19.5866616 17.1237117,19.5699562 L14.4948466,16.565539 C14.1758365,16.200956 14,15.7329761 14,15.2485298 L14,5 C14,3.8954305 14.8954305,3 16,3 Z" fill="#000000"></path>
+														</g>
+													</svg>
+													<!--end::Svg Icon-->
+												</span>Dashboard</button>
+											<!--begin::Dropdown Menu-->
+											<div class="dropdown-menu dropdown-menu-sm dropdown-menu-right" style="">
+												<!--begin::Navigation-->
+												<ul class="navi flex-column navi-hover py-2">
+													<!-- <li class="navi-header font-weight-bolder text-uppercase font-size-sm text-primary pb-2">Choose an option:</li> -->
+
+													<li class="navi-item">
+														<a href="<?= BASE_URL ?>dashboard.php" class="navi-link">
+															<span class="navi-icon">
+																<i class="la la-file-text-o"></i>
+															</span>
+															<span class="navi-text">Home</span>
+														</a>
+													</li>
+
+												</ul>
+												<!--end::Navigation-->
+											</div>
+											<!--end::Dropdown Menu-->
+										</div>
+										<a href="<?= BASE_URL ?>add-portfolio.php" class="btn btn-primary font-weight-bolder">
 											<span class="svg-icon svg-icon-md">
-												<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
 												<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 													<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 														<rect x="0" y="0" width="24" height="24"></rect>
@@ -155,55 +182,63 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from testimonials wh
 														<path d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z" fill="#000000" opacity="0.3"></path>
 													</g>
 												</svg>
-												<!--end::Svg Icon-->
-											</span>Go Back</a>
-										<!--end::Button-->
+											</span>Add New Portfolio</a>
 									</div>
 								</div>
 								<div class="card-body">
+									<table id="example" class="table table-bordered  dataTable " style="width:100%">
+										<thead>
+											<tr>
+												<th>ID</th>
+												<th>Portfolio Title</th>
+												<th>Portfolio Image</th>
+												<!-- <th>Main Page Content</th>
+												<th>Blog Image</th> -->
+												<th>Status</th>
+												<th>Edit</th>
+												<th>Delete</th>
+											</tr>
+										</thead>
+										<tbody>
 
+											<?php
+											$query = mysqli_query($conn, "select * from portfolio order by portfolio_id asc");
+											$totl = mysqli_num_rows($query);
+											if ($totl > 0) {
+												$id = 1;
+												while ($row = mysqli_fetch_array($query)) {
+											?>
+													<tr>
+														<td><?= $id ?></td>
+														<td><?= $row['portfolio_title'] ?></td>
+														<td><img src="<?= BASE_URL_IMG . 'blog-image/' . $row['portfolio_img'] . '' ?>" width="100"></td>
+														<td><span class="label label-lg font-weight-bold 
+		<?= ($row['is_active'] == 1 ? 'label-light-success' : 'label-light-danger') ?> label-inline"><?= ($row['is_active'] == 1 ? 'Active' : 'Inactive') ?></span></td>
+														<td><a href="<?= BASE_URL ?>edit-portfolio.php?edit_rec=<?= $row['portfolio_id'] ?>" class="btn btn-warning">Edit</a></td>
 
-									<div class=" card-custom gutter-b example example-compact">
-
-
-										<!--begin::Form-->
-										<form action="" enctype="multipart/form-data" method="post" id="edit-slider">
-											<div class="card-body">
-
-
-
-
-												<div class="form-group">
-													<label for="exampleInputPassword1">Testimonial Name
-														<span class="text-danger">*</span></label>
-													<input type="text" name="testimonials_name" value="<?= $details['testimonials_name'] ?>" class="form-control" autocomplete="off" placeholder="Heading">
-												</div>
-
-												<div class="form-group">
-													<label for="exampleInputPassword1">Testimonial
-														<span class="text-danger">*</span></label>
-													<input type="text" name="testimonials_quote" value="<?= $details['testimonials_quote'] ?>" class="form-control" autocomplete="off" placeholder="Heading">
-												</div>
-
-												<div class="form-group">
-													<label for="exampleInputPassword1">Status</label>
-													<span class="switch switch-md switch-icon">
-														<label>
-															<input type="checkbox" name="is_active" value="1" <?= ($details['is_active'] == 1 ? 'checked' : '') ?>>
-															<span></span>
-														</label>
-													</span>
-												</div>
-											</div>
-											<div class="card-footer">
-												<button type="submit" name="update_slider" class="btn btn-primary mr-2">Update</button>
-												<button type="reset" class="btn btn-secondary">Reset</button>
-											</div>
-										</form><!--end::Form-->
-									</div>
-
-
-
+														<td><a href="<?= BASE_URL ?>manage-portfolio.php?del=<?= $row['portfolio_id'] ?>" class="btn btn-danger del_rec" data-url="<?= BASE_URL ?>manage-portfolio.php?del=<?= $row['portfolio_id'] ?>">Delete</a></td>
+													</tr>
+												<?php $id++;
+												}
+											} else { ?>
+												<tr>
+													<td colspan="10" align="center">No record found</td>
+												</tr>
+											<?php } ?>
+										</tbody>
+										<tfoot>
+											<tr>
+											<th>ID</th>
+												<th>Portfolio Title</th>
+												<th>Portfolio Image</th>
+												<!-- <th>Main Page Content</th>
+												<th>Blog Image</th> -->
+												<th>Status</th>
+												<th>Edit</th>
+												<th>Delete</th>
+											</tr>
+										</tfoot>
+									</table>
 								</div>
 							</div>
 							<!--end::Card-->

@@ -26,7 +26,7 @@
             }
         </style>
     </li>
-    <li><a href="index.php">Portfolio</a> </li>
+    <li><a href="portfolio.php">Portfolio</a> </li>
     <li><a href="blog.php">Blog</a> </li>
     <li><a href="contact-us.php">Contact Us</a> </li>
 

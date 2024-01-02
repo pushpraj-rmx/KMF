@@ -1,25 +1,33 @@
 <?php
-include('db/config.php');
+
+// error_reporting(0);
+session_start();
+date_default_timezone_set('Asia/Kolkata');
+define('BASE_URL', 'http://localhost/KMF/KMF-Media-Panel/');
+define('BASE_URL_IMG', 'http://localhost/KMF/KMF-Media-Panel/images/');
+$conn = mysqli_connect('localhost', 'root', '', 'kmfmedia');
+if (!$conn) {
+	die('Database Connection Failed !');
+}
+
+$date = date('d-m-Y') . ' ' . date('h:m:s');
+
 include('includes/header.php');
-include('lock2.php');
+if (isset($_POST['add_slider'])) {
 
-$edit_id = $_GET['edit_rec'];
-if (isset($_POST['update_slider'])) {
-
-	$testimonials_name = $_POST['testimonials_name'];
-	$testimonials_quote = $_POST['testimonials_quote'];
+	$portfolio_title = $_POST['portfolio_title'];
+	$portfolio_img = 'portfolio_img' . rand(0, 1000) . '_' . $_FILES['portfolio_img']['name'];
 	$is_active = ($_POST['is_active'] != '' ? 1 : 2);
 
-	$query = mysqli_query($conn, "update testimonials
-    	                                             SET testimonials_name='$testimonials_name',
-													 testimonials_quote='$testimonials_quote',
-    	                                             is_active=$is_active where testimonials_id=$edit_id");
-
+	$query = mysqli_query($conn, "insert into portfolio
+    	                                             SET portfolio_title='$portfolio_title',
+													 portfolio_img='$portfolio_img',
+                                                         is_active='$is_active'");
 	if ($query) {
-		header('Location:manage-testimonials.php');
+		move_uploaded_file($_FILES['portfolio_img']['tmp_name'], 'images/blog-image/' . $portfolio_img . '');
+		header('Location:manage-portfolio.php');
 	}
 }
-$details = mysqli_fetch_array(mysqli_query($conn, "select * from testimonials where testimonials_id=$edit_id"));
 ?>
 <!--begin::Body-->
 
@@ -86,7 +94,6 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from testimonials wh
 						<!--end::Header Menu Wrapper-->
 						<!--begin::Topbar-->
 						<div class="topbar">
-
 							<!--begin::Languages-->
 							<div class="dropdown">
 								<!--begin::Toggle-->
@@ -99,6 +106,7 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from testimonials wh
 
 							</div>
 							<!--end::Languages-->
+
 
 							<!--begin::User-->
 							<div class="topbar-item">
@@ -124,9 +132,8 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from testimonials wh
 							<!--begin::Info-->
 							<div class="d-flex align-items-center flex-wrap mr-2">
 								<!--begin::Page Title-->
-								<h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Edit Testimonials</h5>
+								<h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Add New Portfolio</h5>
 								<!--end::Page Title-->
-
 							</div>
 							<!--end::Info-->
 
@@ -141,11 +148,11 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from testimonials wh
 							<div class="card card-custom gutter-b">
 								<div class="card-header flex-wrap py-3">
 									<div class="card-title">
-										<!-- <h3 class="card-label">Edit Slider</h3> -->
+										<!-- <h3 class="card-label">Add Slider</h3> -->
 									</div>
 									<div class="card-toolbar">
 										<!--begin::Button-->
-										<a href="<?= BASE_URL ?>manage-home-use.php" class="btn btn-primary font-weight-bolder">
+										<a href="<?= BASE_URL ?>manage-portfolio.php" class="btn btn-primary font-weight-bolder">
 											<span class="svg-icon svg-icon-md">
 												<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
 												<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -161,49 +168,36 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from testimonials wh
 									</div>
 								</div>
 								<div class="card-body">
-
-
 									<div class=" card-custom gutter-b example example-compact">
-
-
-										<!--begin::Form-->
-										<form action="" enctype="multipart/form-data" method="post" id="edit-slider">
+										<form method="post" enctype="multipart/form-data">
 											<div class="card-body">
-
-
-
-
 												<div class="form-group">
-													<label for="exampleInputPassword1">Testimonial Name
+													<label for="exampleInputPassword1">Portfolio Title
 														<span class="text-danger">*</span></label>
-													<input type="text" name="testimonials_name" value="<?= $details['testimonials_name'] ?>" class="form-control" autocomplete="off" placeholder="Heading">
+													<input type="text" name="portfolio_title" value="" class="form-control" autocomplete="off" placeholder="Name">
 												</div>
-
 												<div class="form-group">
-													<label for="exampleInputPassword1">Testimonial
+													<label for="exampleInputPassword1">Portfolio Image
 														<span class="text-danger">*</span></label>
-													<input type="text" name="testimonials_quote" value="<?= $details['testimonials_quote'] ?>" class="form-control" autocomplete="off" placeholder="Heading">
+													<input type="file" name="portfolio_img" value="" class="form-control">
 												</div>
 
 												<div class="form-group">
 													<label for="exampleInputPassword1">Status</label>
 													<span class="switch switch-md switch-icon">
 														<label>
-															<input type="checkbox" name="is_active" value="1" <?= ($details['is_active'] == 1 ? 'checked' : '') ?>>
+															<input type="checkbox" name="is_active" value="1">
 															<span></span>
 														</label>
 													</span>
 												</div>
 											</div>
 											<div class="card-footer">
-												<button type="submit" name="update_slider" class="btn btn-primary mr-2">Update</button>
+												<button type="submit" name="add_slider" class="btn btn-primary mr-2">Add</button>
 												<button type="reset" class="btn btn-secondary">Reset</button>
 											</div>
 										</form><!--end::Form-->
 									</div>
-
-
-
 								</div>
 							</div>
 							<!--end::Card-->
