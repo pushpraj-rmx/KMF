@@ -14,8 +14,8 @@ $details=mysqli_fetch_array(mysqli_query($conn,"select * from tbl_outdoor_equipm
 		<!--begin::Header Mobile-->
 		<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
 			<!--begin::Logo-->
-			<a href="index.html">
-				<img alt="Logo" src="<?=BASE_URL?>assets/media/logos/logo-light.png" />
+			<a href=" dashboard.php">
+				<img alt="Logo" src="<?=BASE_URL?>assets/media/logos/sports-bazaar.png"  width="160"/>
 			</a>
 			<!--end::Logo-->
 			<!--begin::Toolbar-->
@@ -1242,7 +1242,7 @@ $details=mysqli_fetch_array(mysqli_query($conn,"select * from tbl_outdoor_equipm
 						</div>
 						<div class="overlay-layer">
 							<a href="https://eventscalculator.com/https://eventscalculator.com/demo1/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
-							<a href="https://preview.keenthemes.com/metronic/demo1/rtl/index.html" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
+							<a href="https://preview.keenthemes.com/metronic/demo1/rtl/ dashboard.php" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
 						</div>
 					</div>
 					<h5 class="font-weight-bold mb-4 text-center">Demo 2</h5>
@@ -1252,7 +1252,7 @@ $details=mysqli_fetch_array(mysqli_query($conn,"select * from tbl_outdoor_equipm
 						</div>
 						<div class="overlay-layer">
 							<a href="https://eventscalculator.com/https://eventscalculator.com/demo2/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
-							<a href="https://preview.keenthemes.com/metronic/demo2/rtl/index.html" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
+							<a href="https://preview.keenthemes.com/metronic/demo2/rtl/ dashboard.php" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
 						</div>
 					</div>
 					<h5 class="font-weight-bold mb-4 text-center">Demo 3</h5>
@@ -1262,7 +1262,7 @@ $details=mysqli_fetch_array(mysqli_query($conn,"select * from tbl_outdoor_equipm
 						</div>
 						<div class="overlay-layer">
 							<a href="https://eventscalculator.com/https://eventscalculator.com/demo3/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
-							<a href="https://preview.keenthemes.com/metronic/demo3/rtl/index.html" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
+							<a href="https://preview.keenthemes.com/metronic/demo3/rtl/ dashboard.php" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
 						</div>
 					</div>
 					<h5 class="font-weight-bold mb-4 text-center">Demo 4</h5>
@@ -1272,7 +1272,7 @@ $details=mysqli_fetch_array(mysqli_query($conn,"select * from tbl_outdoor_equipm
 						</div>
 						<div class="overlay-layer">
 							<a href="https://eventscalculator.com/https://eventscalculator.com/demo4/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
-							<a href="https://preview.keenthemes.com/metronic/demo4/rtl/index.html" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
+							<a href="https://preview.keenthemes.com/metronic/demo4/rtl/ dashboard.php" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
 						</div>
 					</div>
 					<h5 class="font-weight-bold mb-4 text-center">Demo 5</h5>
@@ -1282,7 +1282,7 @@ $details=mysqli_fetch_array(mysqli_query($conn,"select * from tbl_outdoor_equipm
 						</div>
 						<div class="overlay-layer">
 							<a href="https://eventscalculator.com/https://eventscalculator.com/demo5/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
-							<a href="https://preview.keenthemes.com/metronic/demo5/rtl/index.html" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
+							<a href="https://preview.keenthemes.com/metronic/demo5/rtl/ dashboard.php" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
 						</div>
 					</div>
 					<h5 class="font-weight-bold mb-4 text-center">Demo 6</h5>
@@ -1292,7 +1292,7 @@ $details=mysqli_fetch_array(mysqli_query($conn,"select * from tbl_outdoor_equipm
 						</div>
 						<div class="overlay-layer">
 							<a href="https://eventscalculator.com/https://eventscalculator.com/demo6/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
-							<a href="https://preview.keenthemes.com/metronic/demo6/rtl/index.html" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
+							<a href="https://preview.keenthemes.com/metronic/demo6/rtl/ dashboard.php" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
 						</div>
 					</div>
 					<h5 class="font-weight-bold mb-4 text-center">Demo 7</h5>
@@ -1302,7 +1302,7 @@ $details=mysqli_fetch_array(mysqli_query($conn,"select * from tbl_outdoor_equipm
 						</div>
 						<div class="overlay-layer">
 							<a href="https://eventscalculator.com/https://eventscalculator.com/demo7/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
-							<a href="https://preview.keenthemes.com/metronic/demo7/rtl/index.html" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
+							<a href="https://preview.keenthemes.com/metronic/demo7/rtl/ dashboard.php" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
 						</div>
 					</div>
 					<h5 class="font-weight-bold mb-4 text-center">Demo 8</h5>
@@ -1312,7 +1312,7 @@ $details=mysqli_fetch_array(mysqli_query($conn,"select * from tbl_outdoor_equipm
 						</div>
 						<div class="overlay-layer">
 							<a href="https://eventscalculator.com/https://eventscalculator.com/demo8/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
-							<a href="https://preview.keenthemes.com/metronic/demo8/rtl/index.html" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
+							<a href="https://preview.keenthemes.com/metronic/demo8/rtl/ dashboard.php" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
 						</div>
 					</div>
 					<h5 class="font-weight-bold mb-4 text-center">Demo 9</h5>
@@ -1322,7 +1322,7 @@ $details=mysqli_fetch_array(mysqli_query($conn,"select * from tbl_outdoor_equipm
 						</div>
 						<div class="overlay-layer">
 							<a href="https://eventscalculator.com/https://eventscalculator.com/demo9/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
-							<a href="https://preview.keenthemes.com/metronic/demo9/rtl/index.html" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
+							<a href="https://preview.keenthemes.com/metronic/demo9/rtl/ dashboard.php" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
 						</div>
 					</div>
 					<h5 class="font-weight-bold mb-4 text-center">Demo 10</h5>
@@ -1332,7 +1332,7 @@ $details=mysqli_fetch_array(mysqli_query($conn,"select * from tbl_outdoor_equipm
 						</div>
 						<div class="overlay-layer">
 							<a href="https://eventscalculator.com/https://eventscalculator.com/demo10/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
-							<a href="https://preview.keenthemes.com/metronic/demo10/rtl/index.html" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
+							<a href="https://preview.keenthemes.com/metronic/demo10/rtl/ dashboard.php" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
 						</div>
 					</div>
 					<h5 class="font-weight-bold mb-4 text-center">Demo 11</h5>
@@ -1342,7 +1342,7 @@ $details=mysqli_fetch_array(mysqli_query($conn,"select * from tbl_outdoor_equipm
 						</div>
 						<div class="overlay-layer">
 							<a href="https://eventscalculator.com/https://eventscalculator.com/demo11/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
-							<a href="https://preview.keenthemes.com/metronic/demo11/rtl/index.html" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
+							<a href="https://preview.keenthemes.com/metronic/demo11/rtl/ dashboard.php" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
 						</div>
 					</div>
 					<h5 class="font-weight-bold mb-4 text-center">Demo 12</h5>
@@ -1352,7 +1352,7 @@ $details=mysqli_fetch_array(mysqli_query($conn,"select * from tbl_outdoor_equipm
 						</div>
 						<div class="overlay-layer">
 							<a href="https://eventscalculator.com/https://eventscalculator.com/demo12/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
-							<a href="https://preview.keenthemes.com/metronic/demo12/rtl/index.html" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
+							<a href="https://preview.keenthemes.com/metronic/demo12/rtl/ dashboard.php" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
 						</div>
 					</div>
 					<h5 class="font-weight-bold mb-4 text-center">Demo 13</h5>
@@ -1362,7 +1362,7 @@ $details=mysqli_fetch_array(mysqli_query($conn,"select * from tbl_outdoor_equipm
 						</div>
 						<div class="overlay-layer">
 							<a href="https://eventscalculator.com/https://eventscalculator.com/demo13/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
-							<a href="https://preview.keenthemes.com/metronic/demo13/rtl/index.html" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
+							<a href="https://preview.keenthemes.com/metronic/demo13/rtl/ dashboard.php" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
 						</div>
 					</div>
 					<h5 class="font-weight-bold mb-4 text-center">Demo 14</h5>

@@ -15,7 +15,7 @@ include('lock.php');
 				<!--begin::Aside Top-->
 				<div class="d-flex flex-column-auto flex-column pt-15">
 					<!--begin::Aside header-->
-					<a href="http://localhost/Sports-Bazar/Sports-Bazaar-Panel/" class="text-center mb-10">
+					<a href="Sports-Bazar/Sports-Bazaar-Panel/" class="text-center mb-10">
 						<img src="<?= BASE_URL ?>/assets/media/logos/sports-bazaar.png" class="max-h-160px" alt="" />
 					</a>
 					<!--end::Aside header-->

@@ -1,27 +1,27 @@
 <?php
-
-include 'db/config.php';
+include('db/config.php');
 include('includes/header.php');
-if (isset($_POST['add_slider'])) {
+include('lock2.php');
 
-	$about_position = $_POST['about_position'];
-	$about_name = $_POST['about_name'];
-	$about_desc = $_POST['about_desc'];
-	$about_img = 'about_img' . rand(0, 1000) . '_' . $_FILES['about_img']['name'];
+$edit_id = $_GET['edit_rec'];
+if (isset($_POST['update_slider'])) {
+
+	$music_distribution_name = $_POST['music_distribution_name'];
+	$music_distribution_price = $_POST['music_distribution_price'];
+	$music_distribution_desc = $_POST['music_distribution_desc'];
 	$is_active = ($_POST['is_active'] != '' ? 1 : 2);
 
-	$query = mysqli_query($conn, "insert into about
-    	                                             SET about_position='$about_position',
-                                                         about_name='$about_name',
-														 about_desc='$about_desc',
-														 about_img='$about_img',
-                                                         is_active='$is_active'");
+	$query = mysqli_query($conn, "update music_distribution
+    	                                             SET music_distribution_name='$music_distribution_name',
+													 music_distribution_price='$music_distribution_price',
+													 music_distribution_desc='$music_distribution_desc',
+    	                                             is_active=$is_active where music_distribution_id=$edit_id");
 
 	if ($query) {
-		move_uploaded_file($_FILES['about_img']['tmp_name'], 'images/about-image/' . $about_img . '');
-		header('Location:manage-about.php');
+		header('Location:manage-music-distribution.php');
 	}
 }
+$details = mysqli_fetch_array(mysqli_query($conn, "select * from music_distribution where music_distribution_id=$edit_id"));
 ?>
 <!--begin::Body-->
 
@@ -31,7 +31,7 @@ if (isset($_POST['add_slider'])) {
 	<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
 		<!--begin::Logo-->
 		<a href=" dashboard.php">
-			<img alt="Logo" src="<?= BASE_URL ?>assets/media/logos/sports-bazaar.png" width="160" />
+			<img alt="Logo" src="<?= BASE_URL ?>assets/media/logos/sports-bazaar.png"  width="160"/>
 		</a>
 		<!--end::Logo-->
 		<!--begin::Toolbar-->
@@ -86,6 +86,7 @@ if (isset($_POST['add_slider'])) {
 						<!--end::Header Menu Wrapper-->
 						<!--begin::Topbar-->
 						<div class="topbar">
+
 							<!--begin::Languages-->
 							<div class="dropdown">
 								<!--begin::Toggle-->
@@ -98,7 +99,6 @@ if (isset($_POST['add_slider'])) {
 
 							</div>
 							<!--end::Languages-->
-
 
 							<!--begin::User-->
 							<div class="topbar-item">
@@ -124,7 +124,7 @@ if (isset($_POST['add_slider'])) {
 							<!--begin::Info-->
 							<div class="d-flex align-items-center flex-wrap mr-2">
 								<!--begin::Page Title-->
-								<h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Add About</h5>
+								<h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Edit Music Distribution Package</h5>
 								<!--end::Page Title-->
 
 							</div>
@@ -141,11 +141,11 @@ if (isset($_POST['add_slider'])) {
 							<div class="card card-custom gutter-b">
 								<div class="card-header flex-wrap py-3">
 									<div class="card-title">
-										<!-- <h3 class="card-label">Add Slider</h3> -->
+										<!-- <h3 class="card-label">Edit Slider</h3> -->
 									</div>
 									<div class="card-toolbar">
 										<!--begin::Button-->
-										<a href="<?= BASE_URL ?>manage-about.php" class="btn btn-primary font-weight-bolder">
+										<a href="<?= BASE_URL ?>manage-music-distribution.php" class="btn btn-primary font-weight-bolder">
 											<span class="svg-icon svg-icon-md">
 												<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
 												<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -166,49 +166,47 @@ if (isset($_POST['add_slider'])) {
 									<div class=" card-custom gutter-b example example-compact">
 
 
-										<form method="post" enctype="multipart/form-data">
+										<!--begin::Form-->
+										<form action="" enctype="multipart/form-data" method="post" id="edit-slider">
 											<div class="card-body">
 
 
 
 
 												<div class="form-group">
-													<label for="exampleInputPassword1">About Position
+													<label for="exampleInputPassword1">Package Name
 														<span class="text-danger">*</span></label>
-													<input type="text" name="about_position" value="" class="form-control" autocomplete="off" placeholder="Name">
+													<input type="text" name="music_distribution_name" value="<?= $details['music_distribution_name'] ?>" class="form-control" autocomplete="off" placeholder="Heading">
 												</div>
+
 												<div class="form-group">
-													<label for="exampleInputPassword1">About Name
+													<label for="exampleInputPassword1">Package Price
 														<span class="text-danger">*</span></label>
-													<input type="text" name="about_name" value="" class="form-control" autocomplete="off" placeholder="Name">
+													<input type="text" name="music_distribution_price" value="<?= $details['music_distribution_price'] ?>" class="form-control" autocomplete="off" placeholder="Heading">
 												</div>
 
 												<div  class="form-group">
-													<label for="exampleInputPassword1">About Description
+													<label for="exampleInputPassword1">Package Content
 														<span class="text-danger">*</span></label>
-													<textarea name="about_desc" id="editor" cols="30" rows="10"></textarea>
+													<textarea name="music_distribution_desc" id="editor" cols="30" rows="10"><?= $details['music_distribution_desc'] ?></textarea>
 												</div>
 
+						
 
-												<div class="form-group">
-													<label for="exampleInputPassword1">About Image
-														<span class="text-danger">*</span></label>
-													<input type="file" name="about_img" value="" class="form-control">
-												</div>
 
 
 												<div class="form-group">
 													<label for="exampleInputPassword1">Status</label>
 													<span class="switch switch-md switch-icon">
 														<label>
-															<input type="checkbox" name="is_active" value="1">
+															<input type="checkbox" name="is_active" value="1" <?= ($details['is_active'] == 1 ? 'checked' : '') ?>>
 															<span></span>
 														</label>
 													</span>
 												</div>
 											</div>
 											<div class="card-footer">
-												<button type="submit" name="add_slider" class="btn btn-primary mr-2">Add</button>
+												<button type="submit" name="update_slider" class="btn btn-primary mr-2">Update</button>
 												<button type="reset" class="btn btn-secondary">Reset</button>
 											</div>
 										</form><!--end::Form-->

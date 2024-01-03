@@ -1,5 +1,5 @@
 <ul class="hamburger-navigation">
-    <li><a href="index.html">Home</a>
+    <li><a href=" dashboard.php">Home</a>
         <!-- <ul class="dropdown">
             <li><a href="index-video.html">VIDEO BG</a></li>
             <li><a href="index-mouse-split.html">MOUSE SPLIT</a></li>

@@ -1,27 +1,30 @@
 <?php
-
-include 'db/config.php';
+include('db/config.php');
 include('includes/header.php');
-if (isset($_POST['add_slider'])) {
+include('lock2.php');
 
-	$about_position = $_POST['about_position'];
-	$about_name = $_POST['about_name'];
-	$about_desc = $_POST['about_desc'];
-	$about_img = 'about_img' . rand(0, 1000) . '_' . $_FILES['about_img']['name'];
+$edit_id = $_GET['edit_rec'];
+if (isset($_POST['update_slider'])) {
+
+	$slider_preheader = $_POST['slider_preheader'];
+	$slider_header = $_POST['slider_header'];
+	$slider_desc = $_POST['slider_desc'];
 	$is_active = ($_POST['is_active'] != '' ? 1 : 2);
 
-	$query = mysqli_query($conn, "insert into about
-    	                                             SET about_position='$about_position',
-                                                         about_name='$about_name',
-														 about_desc='$about_desc',
-														 about_img='$about_img',
-                                                         is_active='$is_active'");
+
+
+
+	$query = mysqli_query($conn, "update slider
+    	                                             SET slider_preheader='$slider_preheader',
+													 slider_header='$slider_header',
+													 slider_desc='$slider_desc',
+    	                                             is_active=$is_active where slider_id=$edit_id");
 
 	if ($query) {
-		move_uploaded_file($_FILES['about_img']['tmp_name'], 'images/about-image/' . $about_img . '');
-		header('Location:manage-about.php');
+		header('Location:manage-slider.php');
 	}
 }
+$details = mysqli_fetch_array(mysqli_query($conn, "select * from slider where slider_id=$edit_id"));
 ?>
 <!--begin::Body-->
 
@@ -31,7 +34,7 @@ if (isset($_POST['add_slider'])) {
 	<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
 		<!--begin::Logo-->
 		<a href=" dashboard.php">
-			<img alt="Logo" src="<?= BASE_URL ?>assets/media/logos/sports-bazaar.png" width="160" />
+			<img alt="Logo" src="<?= BASE_URL ?>assets/media/logos/sports-bazaar.png"  width="160"/>
 		</a>
 		<!--end::Logo-->
 		<!--begin::Toolbar-->
@@ -86,6 +89,7 @@ if (isset($_POST['add_slider'])) {
 						<!--end::Header Menu Wrapper-->
 						<!--begin::Topbar-->
 						<div class="topbar">
+
 							<!--begin::Languages-->
 							<div class="dropdown">
 								<!--begin::Toggle-->
@@ -98,7 +102,6 @@ if (isset($_POST['add_slider'])) {
 
 							</div>
 							<!--end::Languages-->
-
 
 							<!--begin::User-->
 							<div class="topbar-item">
@@ -124,7 +127,7 @@ if (isset($_POST['add_slider'])) {
 							<!--begin::Info-->
 							<div class="d-flex align-items-center flex-wrap mr-2">
 								<!--begin::Page Title-->
-								<h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Add About</h5>
+								<h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Edit Blog</h5>
 								<!--end::Page Title-->
 
 							</div>
@@ -141,11 +144,11 @@ if (isset($_POST['add_slider'])) {
 							<div class="card card-custom gutter-b">
 								<div class="card-header flex-wrap py-3">
 									<div class="card-title">
-										<!-- <h3 class="card-label">Add Slider</h3> -->
+										<!-- <h3 class="card-label">Edit Slider</h3> -->
 									</div>
 									<div class="card-toolbar">
 										<!--begin::Button-->
-										<a href="<?= BASE_URL ?>manage-about.php" class="btn btn-primary font-weight-bolder">
+										<a href="<?= BASE_URL ?>manage-home-use.php" class="btn btn-primary font-weight-bolder">
 											<span class="svg-icon svg-icon-md">
 												<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
 												<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -166,34 +169,26 @@ if (isset($_POST['add_slider'])) {
 									<div class=" card-custom gutter-b example example-compact">
 
 
-										<form method="post" enctype="multipart/form-data">
+										<!--begin::Form-->
+										<form action="" enctype="multipart/form-data" method="post" id="edit-slider">
 											<div class="card-body">
 
-
-
-
 												<div class="form-group">
-													<label for="exampleInputPassword1">About Position
+													<label for="exampleInputPassword1">Slider Pre-header
 														<span class="text-danger">*</span></label>
-													<input type="text" name="about_position" value="" class="form-control" autocomplete="off" placeholder="Name">
-												</div>
-												<div class="form-group">
-													<label for="exampleInputPassword1">About Name
-														<span class="text-danger">*</span></label>
-													<input type="text" name="about_name" value="" class="form-control" autocomplete="off" placeholder="Name">
+													<input type="text" name="slider_preheader" value="<?= $details['slider_preheader'] ?>" class="form-control" autocomplete="off" placeholder="Heading">
 												</div>
 
-												<div  class="form-group">
-													<label for="exampleInputPassword1">About Description
+												<div class="form-group">
+													<label for="exampleInputPassword1">Slider Header
 														<span class="text-danger">*</span></label>
-													<textarea name="about_desc" id="editor" cols="30" rows="10"></textarea>
+													<input type="text" name="slider_header'" value="<?= $details['slider_header'] ?>" class="form-control" autocomplete="off" placeholder="Heading">
 												</div>
 
-
 												<div class="form-group">
-													<label for="exampleInputPassword1">About Image
+													<label for="exampleInputPassword1">Slider Description
 														<span class="text-danger">*</span></label>
-													<input type="file" name="about_img" value="" class="form-control">
+													<textarea name="slider_desc" id="editor" cols="30" rows="10"><?= $details['slider_desc'] ?></textarea>
 												</div>
 
 
@@ -201,14 +196,14 @@ if (isset($_POST['add_slider'])) {
 													<label for="exampleInputPassword1">Status</label>
 													<span class="switch switch-md switch-icon">
 														<label>
-															<input type="checkbox" name="is_active" value="1">
+															<input type="checkbox" name="is_active" value="1" <?= ($details['is_active'] == 1 ? 'checked' : '') ?>>
 															<span></span>
 														</label>
 													</span>
 												</div>
 											</div>
 											<div class="card-footer">
-												<button type="submit" name="add_slider" class="btn btn-primary mr-2">Add</button>
+												<button type="submit" name="update_slider" class="btn btn-primary mr-2">Update</button>
 												<button type="reset" class="btn btn-secondary">Reset</button>
 											</div>
 										</form><!--end::Form-->

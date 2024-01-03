@@ -4,22 +4,19 @@ include 'db/config.php';
 include('includes/header.php');
 if (isset($_POST['add_slider'])) {
 
-	$about_position = $_POST['about_position'];
-	$about_name = $_POST['about_name'];
-	$about_desc = $_POST['about_desc'];
-	$about_img = 'about_img' . rand(0, 1000) . '_' . $_FILES['about_img']['name'];
+	$slider_preheader = $_POST['slider_preheader'];
+	$slider_header = $_POST['slider_header'];
+	$slider_desc = $_POST['slider_desc'];
 	$is_active = ($_POST['is_active'] != '' ? 1 : 2);
 
-	$query = mysqli_query($conn, "insert into about
-    	                                             SET about_position='$about_position',
-                                                         about_name='$about_name',
-														 about_desc='$about_desc',
-														 about_img='$about_img',
+	$query = mysqli_query($conn, "insert into slider
+    	                                             SET slider_preheader='$slider_preheader',
+                                                         slider_header='$slider_header',
+														 slider_desc='$slider_desc',
                                                          is_active='$is_active'");
 
 	if ($query) {
-		move_uploaded_file($_FILES['about_img']['tmp_name'], 'images/about-image/' . $about_img . '');
-		header('Location:manage-about.php');
+		header('Location:manage-slider.php');
 	}
 }
 ?>
@@ -31,7 +28,7 @@ if (isset($_POST['add_slider'])) {
 	<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
 		<!--begin::Logo-->
 		<a href=" dashboard.php">
-			<img alt="Logo" src="<?= BASE_URL ?>assets/media/logos/sports-bazaar.png" width="160" />
+			<img alt="Logo" src="<?= BASE_URL ?>assets/media/logos/sports-bazaar.png"  width="160"/>
 		</a>
 		<!--end::Logo-->
 		<!--begin::Toolbar-->
@@ -124,7 +121,7 @@ if (isset($_POST['add_slider'])) {
 							<!--begin::Info-->
 							<div class="d-flex align-items-center flex-wrap mr-2">
 								<!--begin::Page Title-->
-								<h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Add About</h5>
+								<h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Add New Slider</h5>
 								<!--end::Page Title-->
 
 							</div>
@@ -145,7 +142,7 @@ if (isset($_POST['add_slider'])) {
 									</div>
 									<div class="card-toolbar">
 										<!--begin::Button-->
-										<a href="<?= BASE_URL ?>manage-about.php" class="btn btn-primary font-weight-bolder">
+										<a href="<?= BASE_URL ?>manage-blogs.php" class="btn btn-primary font-weight-bolder">
 											<span class="svg-icon svg-icon-md">
 												<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
 												<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -173,27 +170,20 @@ if (isset($_POST['add_slider'])) {
 
 
 												<div class="form-group">
-													<label for="exampleInputPassword1">About Position
+													<label for="exampleInputPassword1">Slider Pre-header
 														<span class="text-danger">*</span></label>
-													<input type="text" name="about_position" value="" class="form-control" autocomplete="off" placeholder="Name">
+													<input type="text" name="slider_preheader" value="" class="form-control" autocomplete="off" placeholder="Name">
 												</div>
 												<div class="form-group">
-													<label for="exampleInputPassword1">About Name
+													<label for="exampleInputPassword1">Slider Header
 														<span class="text-danger">*</span></label>
-													<input type="text" name="about_name" value="" class="form-control" autocomplete="off" placeholder="Name">
+													<input type="text" name="slider_header" value="" class="form-control" autocomplete="off" placeholder="Name">
 												</div>
 
 												<div  class="form-group">
-													<label for="exampleInputPassword1">About Description
+													<label for="exampleInputPassword1">Slider Description
 														<span class="text-danger">*</span></label>
-													<textarea name="about_desc" id="editor" cols="30" rows="10"></textarea>
-												</div>
-
-
-												<div class="form-group">
-													<label for="exampleInputPassword1">About Image
-														<span class="text-danger">*</span></label>
-													<input type="file" name="about_img" value="" class="form-control">
+													<textarea name="slider_desc" id="editor" cols="30" rows="10"></textarea>
 												</div>
 
 

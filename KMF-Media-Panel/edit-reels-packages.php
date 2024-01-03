@@ -30,8 +30,8 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from reels_package w
 	<!--begin::Header Mobile-->
 	<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
 		<!--begin::Logo-->
-		<a href="index.html">
-			<img alt="Logo" src="<?= BASE_URL ?>assets/media/logos/logo-light.png" />
+		<a href=" dashboard.php">
+			<img alt="Logo" src="<?= BASE_URL ?>assets/media/logos/sports-bazaar.png"  width="160"/>
 		</a>
 		<!--end::Logo-->
 		<!--begin::Toolbar-->
@@ -42,9 +42,7 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from reels_package w
 			</button>
 			<!--end::Aside Mobile Toggle-->
 			<!--begin::Header Menu Mobile Toggle-->
-			<button class="btn p-0 burger-icon ml-4" id="kt_header_mobile_toggle">
-				<span></span>
-			</button>
+			 
 			<!--end::Header Menu Mobile Toggle-->
 			<!--begin::Topbar Mobile Toggle-->
 			<button class="btn btn-hover-text-primary p-0 ml-2" id="kt_header_mobile_topbar_toggle">
@@ -249,7 +247,7 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from reels_package w
 				</div>
 				<div class="d-flex flex-column">
 					<a href="#" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary"><?= $_SESSION['username'] ?></a>
-					<div class="text-muted mt-1"><?= $_SESSION['designation'] ?></div>
+					<div class="text-muted mt-1"></div>
 					<div class="navi mt-2">
 						<a href="#" class="navi-item">
 							<span class="navi-link p-0 pb-2">
@@ -1267,8 +1265,8 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from reels_package w
 						<img src="assets/media/demos/demo1.png" alt="" class="w-100" />
 					</div>
 					<div class="overlay-layer">
-						<a href="http://localhost/cost/http://localhost/cost/demo1/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
-						<a href="https://preview.keenthemes.com/metronic/demo1/rtl/index.html" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
+						<a href="demo1/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
+						<a href="https://preview.keenthemes.com/metronic/demo1/rtl/ dashboard.php" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
 					</div>
 				</div>
 				<h5 class="font-weight-bold mb-4 text-center">Demo 2</h5>
@@ -1277,8 +1275,8 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from reels_package w
 						<img src="assets/media/demos/demo2.png" alt="" class="w-100" />
 					</div>
 					<div class="overlay-layer">
-						<a href="http://localhost/cost/http://localhost/cost/demo2/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
-						<a href="https://preview.keenthemes.com/metronic/demo2/rtl/index.html" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
+						<a href="demo2/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
+						<a href="https://preview.keenthemes.com/metronic/demo2/rtl/ dashboard.php" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
 					</div>
 				</div>
 				<h5 class="font-weight-bold mb-4 text-center">Demo 3</h5>
@@ -1287,8 +1285,8 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from reels_package w
 						<img src="assets/media/demos/demo3.png" alt="" class="w-100" />
 					</div>
 					<div class="overlay-layer">
-						<a href="http://localhost/cost/http://localhost/cost/demo3/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
-						<a href="https://preview.keenthemes.com/metronic/demo3/rtl/index.html" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
+						<a href="demo3/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
+						<a href="https://preview.keenthemes.com/metronic/demo3/rtl/ dashboard.php" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
 					</div>
 				</div>
 				<h5 class="font-weight-bold mb-4 text-center">Demo 4</h5>
@@ -1297,8 +1295,8 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from reels_package w
 						<img src="assets/media/demos/demo4.png" alt="" class="w-100" />
 					</div>
 					<div class="overlay-layer">
-						<a href="http://localhost/cost/http://localhost/cost/demo4/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
-						<a href="https://preview.keenthemes.com/metronic/demo4/rtl/index.html" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
+						<a href="demo4/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
+						<a href="https://preview.keenthemes.com/metronic/demo4/rtl/ dashboard.php" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
 					</div>
 				</div>
 				<h5 class="font-weight-bold mb-4 text-center">Demo 5</h5>
@@ -1307,8 +1305,8 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from reels_package w
 						<img src="assets/media/demos/demo5.png" alt="" class="w-100" />
 					</div>
 					<div class="overlay-layer">
-						<a href="http://localhost/cost/http://localhost/cost/demo5/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
-						<a href="https://preview.keenthemes.com/metronic/demo5/rtl/index.html" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
+						<a href="demo5/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
+						<a href="https://preview.keenthemes.com/metronic/demo5/rtl/ dashboard.php" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
 					</div>
 				</div>
 				<h5 class="font-weight-bold mb-4 text-center">Demo 6</h5>
@@ -1317,8 +1315,8 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from reels_package w
 						<img src="assets/media/demos/demo6.png" alt="" class="w-100" />
 					</div>
 					<div class="overlay-layer">
-						<a href="http://localhost/cost/http://localhost/cost/demo6/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
-						<a href="https://preview.keenthemes.com/metronic/demo6/rtl/index.html" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
+						<a href="demo6/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
+						<a href="https://preview.keenthemes.com/metronic/demo6/rtl/ dashboard.php" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
 					</div>
 				</div>
 				<h5 class="font-weight-bold mb-4 text-center">Demo 7</h5>
@@ -1327,8 +1325,8 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from reels_package w
 						<img src="assets/media/demos/demo7.png" alt="" class="w-100" />
 					</div>
 					<div class="overlay-layer">
-						<a href="http://localhost/cost/http://localhost/cost/demo7/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
-						<a href="https://preview.keenthemes.com/metronic/demo7/rtl/index.html" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
+						<a href="demo7/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
+						<a href="https://preview.keenthemes.com/metronic/demo7/rtl/ dashboard.php" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
 					</div>
 				</div>
 				<h5 class="font-weight-bold mb-4 text-center">Demo 8</h5>
@@ -1337,8 +1335,8 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from reels_package w
 						<img src="assets/media/demos/demo8.png" alt="" class="w-100" />
 					</div>
 					<div class="overlay-layer">
-						<a href="http://localhost/cost/http://localhost/cost/demo8/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
-						<a href="https://preview.keenthemes.com/metronic/demo8/rtl/index.html" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
+						<a href="demo8/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
+						<a href="https://preview.keenthemes.com/metronic/demo8/rtl/ dashboard.php" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
 					</div>
 				</div>
 				<h5 class="font-weight-bold mb-4 text-center">Demo 9</h5>
@@ -1347,8 +1345,8 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from reels_package w
 						<img src="assets/media/demos/demo9.png" alt="" class="w-100" />
 					</div>
 					<div class="overlay-layer">
-						<a href="http://localhost/cost/http://localhost/cost/demo9/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
-						<a href="https://preview.keenthemes.com/metronic/demo9/rtl/index.html" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
+						<a href="demo9/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
+						<a href="https://preview.keenthemes.com/metronic/demo9/rtl/ dashboard.php" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
 					</div>
 				</div>
 				<h5 class="font-weight-bold mb-4 text-center">Demo 10</h5>
@@ -1357,8 +1355,8 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from reels_package w
 						<img src="assets/media/demos/demo10.png" alt="" class="w-100" />
 					</div>
 					<div class="overlay-layer">
-						<a href="http://localhost/cost/http://localhost/cost/demo10/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
-						<a href="https://preview.keenthemes.com/metronic/demo10/rtl/index.html" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
+						<a href="demo10/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
+						<a href="https://preview.keenthemes.com/metronic/demo10/rtl/ dashboard.php" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
 					</div>
 				</div>
 				<h5 class="font-weight-bold mb-4 text-center">Demo 11</h5>
@@ -1367,8 +1365,8 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from reels_package w
 						<img src="assets/media/demos/demo11.png" alt="" class="w-100" />
 					</div>
 					<div class="overlay-layer">
-						<a href="http://localhost/cost/http://localhost/cost/demo11/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
-						<a href="https://preview.keenthemes.com/metronic/demo11/rtl/index.html" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
+						<a href="demo11/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
+						<a href="https://preview.keenthemes.com/metronic/demo11/rtl/ dashboard.php" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
 					</div>
 				</div>
 				<h5 class="font-weight-bold mb-4 text-center">Demo 12</h5>
@@ -1377,8 +1375,8 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from reels_package w
 						<img src="assets/media/demos/demo12.png" alt="" class="w-100" />
 					</div>
 					<div class="overlay-layer">
-						<a href="http://localhost/cost/http://localhost/cost/demo12/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
-						<a href="https://preview.keenthemes.com/metronic/demo12/rtl/index.html" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
+						<a href="demo12/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
+						<a href="https://preview.keenthemes.com/metronic/demo12/rtl/ dashboard.php" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
 					</div>
 				</div>
 				<h5 class="font-weight-bold mb-4 text-center">Demo 13</h5>
@@ -1387,8 +1385,8 @@ $details = mysqli_fetch_array(mysqli_query($conn, "select * from reels_package w
 						<img src="assets/media/demos/demo13.png" alt="" class="w-100" />
 					</div>
 					<div class="overlay-layer">
-						<a href="http://localhost/cost/http://localhost/cost/demo13/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
-						<a href="https://preview.keenthemes.com/metronic/demo13/rtl/index.html" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
+						<a href="demo13/dist" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">Default</a>
+						<a href="https://preview.keenthemes.com/metronic/demo13/rtl/ dashboard.php" class="btn btn-white btn-text-primary btn-hover-primary font-weight-boldest text-center min-w-75px shadow" target="_blank">RTL Version</a>
 					</div>
 				</div>
 				<h5 class="font-weight-bold mb-4 text-center">Demo 14</h5>

@@ -59,42 +59,33 @@
       <!-- end video -->
       <div class="swiper-container">
         <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div class="inner">
-              <h5 data-swiper-parallax="-600">CUSTOM ELEMENTS</h5>
-              <h2 data-swiper-parallax="-400">Music Marketing Experts</h2>
-              <p data-swiper-parallax="-200">
-                Our mission is to unleash the boundless potential of music, transcending boundaries and genres.
-              </p>
-              <!-- <a href="#" class="link">DISCOVER NOW</a> -->
+
+          <?php
+          $query = mysqli_query($conn, "select * from slider where is_active=1 order by slider_id asc ");
+          $totl = mysqli_num_rows($query);
+          if ($totl > 0) {
+            $id = 1;
+            while ($row = mysqli_fetch_array($query)) {
+          ?>
+              <div class="swiper-slide">
+                <div class="inner">
+                  <h5 data-swiper-parallax="-600"><?=$row['slider_preheader']?></h5>
+                  <h2 data-swiper-parallax="-400"><?=$row['slider_header']?></h2>
+                  <p data-swiper-parallax="-200">
+                  <?=$row['slider_desc']?>
+                  </p>
+                </div>
+              </div>
+            <?php $id++;
+            }
+          } else { ?>
+            <div>
+              <p salign="center">No record found</p>
             </div>
-            <!-- end inner -->
-          </div>
-          <!-- end swiper-slide -->
-          <div class="swiper-slide">
-            <div class="inner">
-              <h5 data-swiper-parallax="-600">USER INTERFACE</h5>
-              <h2 data-swiper-parallax="-400">Turning Sound into Stories</h2>
-              <p data-swiper-parallax="-200">
-                We specialize in turning the language of sound into captivating stories that resonate with your audience.
-              </p>
-              <!-- <a href="#" class="link">DISCOVER NOW</a> -->
-            </div>
-            <!-- end inner -->
-          </div>
-          <!-- end swiper-slide -->
-          <div class="swiper-slide">
-            <div class="inner">
-              <h5 data-swiper-parallax="-600">EASY TO USE</h5>
-              <h2 data-swiper-parallax="-400">Melody in Every Click</h2>
-              <p data-swiper-parallax="-200">
-                Discover the harmony where melodies and technology converge, creating music with every click.
-              </p>
-              <!-- <a href="#" class="link">DISCOVER NOW</a> -->
-            </div>
-            <!-- end inner -->
-          </div>
-          <!-- end swiper-slide -->
+          <?php } ?>
+
+
+
         </div>
         <!-- Add Pagination -->
         <div class="swiper-pagination"></div>
@@ -113,79 +104,132 @@
         <div class="grid-sizer"></div>
         <!-- end grid-sizer -->
         <div class="grid-item-double">
-          <figure class="reveal-effect se2-white wow perspective-box"> <img src="images/works01.jpg" alt="Image">
-            <figcaption> <a href="project-detail.html">
+          <figure class="reveal-effect se2-white wow perspective-box"> 
+            <a href="">
+
+              <img src="images/works01.jpg" alt="Image">
+            </a> 
+            <figcaption> <a href="music-marketing.php">
                 <div class="bg-color" data-background="#2095f4"></div>
                 <!-- end bg-color -->
                 <div class="brand"> </div>
                 <!-- end brand -->
-                <h5>Music Marketing Services</h5>
-                <small>Explore our comprehensive music marketing services, designed to boost your visibility and reach your target audience.</small>
+                <h5>Meta Ads</h5>
+                <small>
+                Our expertise in Meta Ads (Facebook and Instagram) enhances your reach and engagement.
+
+                </small>
               </a> </figcaption>
           </figure>
         </div>
         <!-- end grid-item -->
         <div class="grid-item-double">
-          <figure class="reveal-effect se2-white wow perspective-box"><img src="images/works02.jpg" alt="Image">
-            <figcaption> <a href="project-detail.html">
+          <figure class="reveal-effect se2-white wow perspective-box">
+            <a href="">
+
+              <img src="images/works02.jpg" alt="Image">
+            </a> 
+            <figcaption> <a href="music-marketing.php">
                 <div class="bg-color" data-background="#ffc509"></div>
                 <!-- end bg-color -->
                 <div class="brand"> </div>
                 <!-- end brand -->
-                <h5>Google Ads Mastery</h5>
-                <small>Harness the power of Google Ads with our expert team to amplify your online presence and music promotions.</small>
+                <h5>YouTube Promotions</h5>
+                <small>
+                Elevate your YouTube presence and increase views with our promotional strategies.
+                </small>
               </a></figcaption>
           </figure>
         </div>
         <!-- end grid-item -->
         <div class="grid-item">
-          <figure class="reveal-effect se2-white wow perspective-box"><img src="images/works03.jpg" alt="Image">
-            <figcaption> <a href="project-detail.html">
+          <figure class="reveal-effect se2-white wow perspective-box">
+            <a href="">
+
+              <img src="images/works03.jpg" alt="Image">
+            </a> 
+            <figcaption> <a href="music-marketing.php">
                 <div class="bg-color" data-background="#6dd7a9"></div>
                 <!-- end bg-color -->
                 <div class="brand"> </div>
                 <!-- end brand -->
-                <h5>Spotify Success</h5>
-                <small>Elevate your Spotify presence with our tailored promotion strategies, placing your music on top playlists and gaining more streams.</small>
+                <h5>
+                Reels Promotions
+
+                </h5>
+                <small>
+                Utilize Instagram Reels for music promotion and capturing audience attention.
+
+                </small>
               </a></figcaption>
           </figure>
         </div>
         <!-- end grid-item -->
         <div class="grid-item">
-          <figure class="reveal-effect se2-white wow perspective-box"><img src="images/works04.jpg" alt="Image">
-            <figcaption><a href="project-detail.html">
+          <figure class="reveal-effect se2-white wow perspective-box">
+            <a href="">
+
+              <img src="images/works04.jpg" alt="Image">
+            </a> 
+            <figcaption><a href="music-marketing.php">
                 <div class="bg-color" data-background="#2d2d2f"></div>
                 <!-- end bg-color -->
                 <div class="brand"> </div>
                 <!-- end brand -->
-                <h5>Creative Brilliance</h5>
-                <small>We create captivating content, from stunning visuals to compelling ad copy, ensuring your music makes a lasting impression.</small>
+                <h5>
+                Press Releases
+
+                </h5>
+                <small>
+                Craft a unique and compelling brand identity that resonates with your audience.
+
+                </small>
               </a> </figcaption>
           </figure>
         </div>
         <!-- end grid-item -->
         <div class="grid-item">
-          <figure class="reveal-effect se2-white wow perspective-box"><img src="images/works06.jpg" alt="Image">
-            <figcaption> <a href="project-detail.html">
+          <figure class="reveal-effect se2-white wow perspective-box">
+            <a href="">
+
+              <img src="images/works06.jpg" alt="Image">
+            </a> 
+            <figcaption> <a href="music-marketing.php">
                 <div class="bg-color" data-background="#fec520"></div>
                 <!-- end bg-color -->
                 <div class="brand"> </div>
                 <!-- end brand -->
-                <h5>Influencer Partnerships</h5>
-                <small>Collaborate with industry influencers to connect with an engaged audience and amplify your music's impact.</small>
+                <h5>
+                Google Ads
+
+                </h5>
+                <small>
+                Engage your audience through strategic email marketing <br> campaigns.
+
+                </small>
               </a></figcaption>
           </figure>
         </div>
         <!-- end grid-item -->
         <div class="grid-item-double">
-          <figure class="reveal-effect se2-white wow perspective-box"><img src="images/works05.jpg" alt="Image">
-            <figcaption> <a href="project-detail.html">
+          <figure class="reveal-effect se2-white wow perspective-box">
+            <a href="">
+
+              <img src="images/works05.jpg" alt="Image">
+            </a> 
+            <figcaption> <a href="music-marketing.php">
                 <div class="bg-color" data-background="#9f7cb2"></div>
                 <!-- end bg-color -->
                 <div class="brand"> </div>
                 <!-- end brand -->
-                <h5>Seamless Music Distribution</h5>
-                <small>Simplify the process of getting your music to your fans with our comprehensive distribution services.</small>
+                <h5>
+                Spotify Promotions
+
+                </h5>
+                <small>
+                We create captivating content to tell your music's story and connect with fans.
+
+                </small>
               </a> </figcaption>
           </figure>
         </div>
@@ -561,13 +605,11 @@
                     <div class="c-card-testimonial__author">
                       <?= $row['testimonials_name'] ?>
                     </div>
-
                     <div class="c-card-testimonial__excerpt">
                       <i>
                         <?= $row['testimonials_quote'] ?>
                       </i>
                     </div>
-
                   </div>
                 </li>
               <?php $id++;
@@ -577,8 +619,6 @@
                 <p salign="center">Can't fetch testimonials, please visit later</p>
               </div>
             <?php } ?>
-
-
           </ul>
 
           <div class="c-testimonials__pagination"></div>

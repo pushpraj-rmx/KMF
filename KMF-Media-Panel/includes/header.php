@@ -2,7 +2,7 @@
 
 <html lang="en">
 	<!--begin::Head-->
-	<head><base href="http://localhost/cost/http://localhost/cost/http://localhost/cost/">
+	<head><base href="">
 		<meta charset="utf-8" />
 		<title>KMF Media Promotions | Manage Everything here.</title>
 		<meta name="description" content="Login page example" />

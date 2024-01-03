@@ -3486,8 +3486,13 @@ only screen and (max-device-width: 767px) {
 }
 @media screen and (max-width: 576px) {
   .c-card-testimonial .c-card-testimonial__description {
+    margin-top: 30px;
     padding: 0;
   }
+  .c-testimonials__items.swiper-wrapper {
+    width: auto;
+  }
+
 }
 .c-card-testimonial .c-card-testimonial__description > * {
   opacity: 0;
@@ -3547,7 +3552,7 @@ only screen and (max-device-width: 767px) {
   .c-testimonials {
     min-height: 500px;
     height: auto;
-    margin: 180px auto;
+    /* margin: 180px auto; */
   }
 }
 @media screen and (max-height: 500px) and (min-width: 992px) {
@@ -3737,3 +3742,4 @@ only screen and (max-device-width: 767px) {
 .c-card-testimonial__excerpt {
   font-size: 20px;
 }
+
