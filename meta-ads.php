@@ -69,7 +69,6 @@
   </style>
 
     <style>
-        @charset "UTF-8";
 
         :root {
             --color-brand-primary: hsl(var(--color-brand-primary-h), 43%, 43%);

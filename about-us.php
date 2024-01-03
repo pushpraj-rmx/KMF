@@ -1,3 +1,6 @@
+
+<?php include  'db/config.php' ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -18,7 +21,7 @@
   <meta property="og:site_name" content="KMF Media">
   <meta property="og:title" content="KMF Media">
   <meta property="og:type" content="website">
-  
+
 
   <!-- TWITTER META -->
   <meta name="twitter:card" content="summary">
@@ -26,7 +29,7 @@
   <meta name="twitter:creator" content="@KMFMedia">
   <meta name="twitter:title" content="KMF Media">
   <meta name="twitter:description" content="KMF Media - Music Production Company">
-  
+
 
   <!-- FAVICON FILES -->
   <link href="ico/apple-touch-icon-144-precomposed.png" rel="apple-touch-icon" sizes="144x144">
@@ -46,7 +49,7 @@
 </head>
 
 <body>
-   
+
   <!-- end preloader -->
   <div class="transition-overlay"></div>
   <!-- end transition-overlay -->
@@ -88,23 +91,22 @@
         <!-- end container -->
       </div>
       <!-- end about-studio -->
-           <div class="side-image-content">
+      <div class="side-image-content">
         <div class="inner">
           <figure class="reveal-effect se2-white wow main-image" data-aos="slide-effect"><img src="images/big-saurav.jpg" alt="Image"></figure>
           <figure class="reveal-effect se2-white wow sub-image phone-hid" data-aos="slide-effect"><img src="images/big-saurav.jpg" alt="Image"></figure>
         </div>
         <style>
-        .phone-hid{
+          .phone-hid {
             display: none;
-        }
-        
-         @media only screen and (max-width: 600px) {
-        
-        .phone-hid {
-            display: block; 
-        }
-    }
-    
+          }
+
+          @media only screen and (max-width: 600px) {
+
+            .phone-hid {
+              display: block;
+            }
+          }
         </style>
         <div class="inner bg1 wow fadeInRight">
           <div class="contenty">
@@ -121,62 +123,48 @@
       </div>
       <section class="content">
         <div class="journal">
-       
-        <!-- end post -->
-        <div class="clearfix"></div>
-        <div class="container mt-5">
-          <div class="row">
-            <div class="col-md-4 col-sm-12 wow fadeInUp">
-              <div class="">
-                <figure><img src="images/co-founder.jpg" alt="Image">
-                </figure>
-                <div class="post-content"> <small>Co-Founder</small>
-                  <h3>Naman Kaushal</h3>
-                  <p><i> "Guiding our ship through the digital seas, our co-founder is the visionary captain, steering us towards innovation and success. Chart the course! 🚀🌐 #LeadershipUnleashed"</i></p>
+
+          <!-- end post -->
+          <div class="clearfix"></div>
+          <div class="container mt-5">
+            <div class="row">
+              <?php
+              $query = mysqli_query($conn, "select * from about where is_active=1 order by about_id asc ");
+              $totl = mysqli_num_rows($query);
+              ?>
+              <?php 
+              if ($totl > 0) {
+                $id = 1;
+                while ($row = mysqli_fetch_array($query)) : ?>
+                  <div class="col-md-4 col-sm-12 wow fadeInUp">
+                    <div class="">
+                      <figure><img src="<?= BASE_URL_IMG . 'about-image/' . $row['about_img'] . '' ?>" alt="Image">
+                      </figure>
+                      <div class="post-content"> <small><?=$row['about_position']?></small>
+                        <h3><?=$row['about_name']?></h3>
+                        <p><i><?=$row['about_desc']?></i></p>
+                      </div>
+                    </div>
+                  </div>
+                <?php $id++;
+                endwhile;
+              } else { ?>
+                <div>
+                  <p salign="center">No record found</p>
                 </div>
-                <!-- end post-content --> 
-              </div>
-              <!-- end post --> 
+              <?php } ?>
             </div>
-            <!-- end col-6 -->
-            <div class="col-md-4 col-sm-12 wow fadeInUp">
-              <div class="">
-                <figure><img src="images/ananya.jpg" alt="Image">
-                </figure>
-                <div class="post-content"> <small>Social media manager</small>
-                  <h3>Ananya Khushi</h3>
-                  <p><i>"Behind the scenes and beyond the posts, our social media manager weaves the narrative that connects us all. Engage with the story! 🌐✨ #SocialMediaMaestro"</i></p>
-                </div>
-                <!-- end post-content --> 
-              </div>
-              <!-- end post --> 
-            </div>
-            <!-- end col-6 -->
-            <div class="col-md-4 col-sm-12 wow fadeInUp">
-              <div class="">
-                <figure><img src="images/aman.jpg" alt="Image">
-                </figure>
-                <div class="post-content"> <small>Manager, Graphic Designer</small>
-                  <h3>Aman Nayak</h3>
-                  <p><i>"In a world of pixels and passion, our graphic designer crafts stories that speak louder than words. Explore the artistry! 🖌️✨ #DesignAlchemy"</i></p>
-                </div>
-                <!-- end post-content --> 
-              </div>
-              <!-- end post --> 
-            </div>
-            <!-- end col-6 -->
-            <!-- end col-6 --> 
           </div>
-          <!-- end row --> 
+          <!-- end row -->
         </div>
         <!-- end container -->
-            </div>
-            <!-- end journal -->
-        </section>
+        </div>
+        <!-- end journal -->
+      </section>
       <!-- end team-members -->
-       <div class="icon-features">
+      <div class="icon-features">
         <div class="container">
-        <div class="row">
+          <div class="row">
             <div class="col-md-4 col-sm-4 col-12 wow fadeIn">
               <div class="color-1">
                 <img src="images/icon01.png" alt="Image">
@@ -213,10 +201,10 @@
               <a href="reels-promotions.php">DISCOVER MORE</a>
             </div>
             <!-- end col-4 -->
-            <div class="col-md-4 col-sm-4 col-12 wow fadeIn"> 
-            <div class="color-4">
-            <img src="images/icon01.png" alt="Image">
-            </div>  
+            <div class="col-md-4 col-sm-4 col-12 wow fadeIn">
+              <div class="color-4">
+                <img src="images/icon01.png" alt="Image">
+              </div>
 
               <small>Press Releases</small>
               <p>
@@ -225,10 +213,10 @@
               <a href="press-releases.php">DISCOVER MORE</a>
             </div>
             <!-- end col-4 -->
-            <div class="col-md-4 col-sm-4 col-12 wow fadeIn" data-wow-delay="0.2s"> 
-            <div class="color-5">
-              <img src="images/icon02.png" alt="Image">
-            </div>  
+            <div class="col-md-4 col-sm-4 col-12 wow fadeIn" data-wow-delay="0.2s">
+              <div class="color-5">
+                <img src="images/icon02.png" alt="Image">
+              </div>
               <small>Google Ads</small>
               <p>
                 Engage your audience through strategic email marketing campaigns.
@@ -236,10 +224,10 @@
               <a href="google-ads.php">DISCOVER MORE</a>
             </div>
             <!-- end col-4 -->
-            <div class="col-md-4 col-sm-4 col-12 wow fadeIn" data-wow-delay="0.4s"> 
-            <div class="color-6">
-              <img src="images/icon03.png" alt="Image">
-            </div>  
+            <div class="col-md-4 col-sm-4 col-12 wow fadeIn" data-wow-delay="0.4s">
+              <div class="color-6">
+                <img src="images/icon03.png" alt="Image">
+              </div>
               <small>Spotify Promotions</small>
               <p>
                 We create captivating content to tell your music's story and connect with fans.
@@ -253,24 +241,24 @@
         <!-- end container -->
       </div>
       <div class="container mt-5">
-          <div class="row">
-            <div class="col-md-4 wow fadeInLeft">
-              <h5>Why Choose KMF Media?</h5>
-              <p class="lead"> Transform your musical dreams into reality with KMF Media – Where Your Sound Matters. Explore more at.</p>
-              <a href="https://www.kmfmedia.in" class="link">www.kmfmedia.in</a>
-            </div>
-            <!-- end col-4 -->
-            <div class="col-md-8 wow fadeInRight">
-              <p class="lead">Whether you are a budding artist or an established name, KMF Media is your partner in musical success. Dive into the art of promotion with us, where your music finds its perfect audience, and your story takes center stage.</p>
-              <p><b>Customized Campaigns</b>: Tailored marketing campaigns designed to meet your specific requirements and target audience. </p>
-              <p><b>Extensive Experience</b>: Having collaborated with over 3000 artists and more than 30 labels, including industry giants like Zee Music. </p>
-              <p><b>Result-Oriented Approach</b>: Our team of marketing experts specializes in strategizing and executing campaigns that deliver tangible results. </p>
-              <p><b>Artist Growth</b>: We don't just promote songs; we focus on the holistic growth of both the artist and the music </p>
-            </div>
-            <!--end col-6 -->
+        <div class="row">
+          <div class="col-md-4 wow fadeInLeft">
+            <h5>Why Choose KMF Media?</h5>
+            <p class="lead"> Transform your musical dreams into reality with KMF Media – Where Your Sound Matters. Explore more at.</p>
+            <a href="https://www.kmfmedia.in" class="link">www.kmfmedia.in</a>
           </div>
-          <!-- end row -->
+          <!-- end col-4 -->
+          <div class="col-md-8 wow fadeInRight">
+            <p class="lead">Whether you are a budding artist or an established name, KMF Media is your partner in musical success. Dive into the art of promotion with us, where your music finds its perfect audience, and your story takes center stage.</p>
+            <p><b>Customized Campaigns</b>: Tailored marketing campaigns designed to meet your specific requirements and target audience. </p>
+            <p><b>Extensive Experience</b>: Having collaborated with over 3000 artists and more than 30 labels, including industry giants like Zee Music. </p>
+            <p><b>Result-Oriented Approach</b>: Our team of marketing experts specializes in strategizing and executing campaigns that deliver tangible results. </p>
+            <p><b>Artist Growth</b>: We don't just promote songs; we focus on the holistic growth of both the artist and the music </p>
+          </div>
+          <!--end col-6 -->
         </div>
+        <!-- end row -->
+      </div>
       <!-- end icon-features -->
       <!-- end side-image-content -->
       <!-- end clients -->
@@ -292,7 +280,7 @@
                   <!-- end award -->
                 </div>
                 <!-- end col-4 -->
-            
+
                 <div class="col-md-6 col-sm-4 col-12">
                   <div class="award">
                     <figure><a href="https://www.thedailybeat.in/krantiveer-sourav-kumar-yadav-founded-kmf-media-one-of-the-fastest-growing-marketing-firm-in-the-industry/"><img src="images/news2.png" alt="Image"></a></figure>
@@ -304,14 +292,14 @@
               </div>
               <!-- end row inner -->
             </div>
-            
+
             <!-- end col-7 -->
           </div>
           <!-- end row -->
         </div>
         <!-- end container -->
       </div>
-            <div class="side-image-content">
+      <div class="side-image-content">
         <div class="inner">
           <figure class="reveal-effect se2-white wow main-image" data-aos="slide-effect"><img src="images/sourav-award.jpeg" alt="Image"></figure>
           <figure class="reveal-effect se2-white wow sub-image" data-aos="slide-effect"><img src="images/saurav-award2.jpg" alt="Image"></figure>
