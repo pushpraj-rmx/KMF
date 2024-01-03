@@ -54,7 +54,7 @@
     <?php include "includes/header.php" ?>
     <section class="slider">
       <div class="video-bg">
-        <video src="videos/video2.mp4" loop muted autoplay></video>
+        <video src="./videos/video1.mp4" loop muted autoplay></video>
       </div>
       <!-- end video -->
       <div class="swiper-container">
@@ -512,7 +512,22 @@
         </style>
         <div class="inner video-custom wow fadeInRight video">
           <div class="contenty" style="text-align: center; margin-bottom:50px">
-            <iframe width="95%" height="500px" src="https://www.youtube.com/embed/DIX8ePuP-ZQ?si=UwS3Kn8kSm82cy0n" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <?php
+            $query = mysqli_query($conn, "select * from youtube_link where is_active=1 order by youtube_link_id asc ");
+            $totl = mysqli_num_rows($query);
+            if ($totl > 0) {
+              $id = 1;
+              while ($row = mysqli_fetch_array($query)) {
+            ?>
+                <iframe width="95%" height="500px" src="<?= $row['youtube_link'] ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <?php $id++;
+              }
+            } else { ?>
+              <div>
+                <p salign="center">No record found</p>
+              </div>
+            <?php } ?>
+
           </div>
         </div>
       </div>

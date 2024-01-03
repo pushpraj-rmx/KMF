@@ -1,4 +1,3 @@
-
 <?php include  'db/config.php' ?>
 
 <!doctype html>
@@ -46,6 +45,7 @@
   <link rel="stylesheet" href="css/fancybox.min.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.0/css/all.min.css" integrity="sha512-UJqci0ZyYcQ0AOJkcIkUCxLS2L6eNcOr7ZiypuInvEhO9uqIDi349MEFrqBzoy1QlfcjfURHl+WTMjEdWcv67A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -109,16 +109,31 @@
           }
         </style>
         <div class="inner bg1 wow fadeInRight">
-          <div class="contenty">
-            <h5>Founder & CEO</h5>
-            <h2>Saurav Kumar Yadav</h2>
-            <p>
-              <!--At <i>KMF Media, </i> you'll be part of a community that shares your passion. Enjoy your private studio and facilities designed to amplify the musical life you envision.-->
-            </p>
-            <p><b><i>Sourav Kumar Yadav</i></b>, renowned by his stage name Krantiveer, is not just the founder but an artist himself. Having navigated through the challenges and obstacles of the music industry, Krantiveer dedicated himself to addressing the pervasive issues faced by artists in India and worldwide. His relentless commitment led him to work tirelessly day and night. His vision? To revolutionize the music industry by consolidating all services under one affordable umbrella. As a visionary personality, Krantiveer established connections with key figures across the industry, laying the foundation for this platform and company dedicated to providing the best for artists.</p>
-            <p>His outstanding contributions were recognized in 2022 when he was awarded as one of the <b>"100 Influential Entrepreneurs"</b> and later in 2023 with the prestigious <b>National Icon Award (Gold Medal) </b> for Entrepreneurship. Krantiveer's expertise extends to Ad management, with a track record of handling funds exceeding 1.5 crores INR,and Marketing consultation. His journey embodies resilience, innovation, and a steadfast commitment to transforming the music industry landscape.</p>
-            <!--<a href="about-us.php"><span data-hover="FIND OUT MORE">FIND OUT MORE</span></a>-->
-          </div>
+          <?php
+          $query = mysqli_query($conn, "select * from about where about_id = 10 ");
+          $totl = mysqli_num_rows($query);
+          if ($totl > 0) {
+            $id = 1;
+            while ($row = mysqli_fetch_array($query)) {
+          ?>
+              <div class="contenty">
+                <h5>
+                  <?=$row['about_position']?>
+                </h5>
+                <h2>
+                  <?=$row['about_name']?>
+                </h2>
+                <p>
+                  <?=$row['about_desc']?>
+                </p>
+              </div>
+            <?php $id++;
+            }
+          } else { ?>
+            <div>
+              <p salign="center">No record found</p>
+            </div>
+          <?php } ?>
         </div>
       </div>
       <section class="content">
@@ -129,10 +144,10 @@
           <div class="container mt-5">
             <div class="row">
               <?php
-              $query = mysqli_query($conn, "select * from about where is_active=1 order by about_id asc ");
+              $query = mysqli_query($conn, "select * from about WHERE about_id <> 10 AND is_active = 1");
               $totl = mysqli_num_rows($query);
               ?>
-              <?php 
+              <?php
               if ($totl > 0) {
                 $id = 1;
                 while ($row = mysqli_fetch_array($query)) : ?>
@@ -140,9 +155,9 @@
                     <div class="">
                       <figure><img src="<?= BASE_URL_IMG . 'about-image/' . $row['about_img'] . '' ?>" alt="Image">
                       </figure>
-                      <div class="post-content"> <small><?=$row['about_position']?></small>
-                        <h3><?=$row['about_name']?></h3>
-                        <p><i><?=$row['about_desc']?></i></p>
+                      <div class="post-content"> <small><?= $row['about_position'] ?></small>
+                        <h3><?= $row['about_name'] ?></h3>
+                        <p><i><?= $row['about_desc'] ?></i></p>
                       </div>
                     </div>
                   </div>
@@ -166,12 +181,14 @@
         <div class="container">
           <div class="row">
             <div class="col-md-4 col-sm-4 col-12 wow fadeIn">
-              <div class="color-1">
-                <img src="images/icon01.png" alt="Image">
+              <div class="meta-ads">
+                <i class="fab fa-facebook"></i>
+                <small>
+                  <h6>
+                    Meta Ads
+                  </h6>
+                </small>
               </div>
-              <small>
-                Meta Ads
-              </small>
               <p>
                 Our expertise in Meta Ads (Facebook and Instagram) enhances your reach and engagement.
               </p>
@@ -179,10 +196,15 @@
             </div>
             <!-- end col-4 -->
             <div class="col-md-4 col-sm-4 col-12 wow fadeIn" data-wow-delay="0.2s">
-              <div class="color-2">
-                <img src="images/icon02.png" alt="Image">
+              <div class="youtube-promotions">
+                <i class="fab fa-youtube"></i>
+                <small>
+                  <h6>
+                    YouTube Promotions
+                  </h6>
+                </small>
               </div>
-              <small>YouTube Promotions</small>
+
               <p>
                 Elevate your YouTube presence and increase views with our promotional strategies.
               </p>
@@ -190,11 +212,16 @@
             </div>
             <!-- end col-4 -->
             <div class="col-md-4 col-sm-4 col-12 wow fadeIn" data-wow-delay="0.4s">
-              <div class="color-3">
-                <img src="images/icon03.png" alt="Image">
+              <div class="reels-promotions">
+                <i class="fab fa-instagram"></i>
+                <small>
+                  <h6>
+                    Reels Promotions
+                  </h6>
+                </small>
+
               </div>
 
-              <small>Reels Promotions</small>
               <p>
                 Utilize Instagram Reels for music promotion and capturing audience attention.
               </p>
@@ -202,11 +229,16 @@
             </div>
             <!-- end col-4 -->
             <div class="col-md-4 col-sm-4 col-12 wow fadeIn">
-              <div class="color-4">
-                <img src="images/icon01.png" alt="Image">
+              <div class="press-release">
+                <i class="fas fa-newspaper"></i>
+                <small>
+                  <h6>
+                    Press Releases
+                  </h6>
+                </small>
+
               </div>
 
-              <small>Press Releases</small>
               <p>
                 Craft a unique and compelling brand identity that resonates with your audience.
               </p>
@@ -214,21 +246,29 @@
             </div>
             <!-- end col-4 -->
             <div class="col-md-4 col-sm-4 col-12 wow fadeIn" data-wow-delay="0.2s">
-              <div class="color-5">
-                <img src="images/icon02.png" alt="Image">
+              <div class="google-adss">
+                <i class="fab fa-google"></i>
+                <small>
+                  <h6>
+                    Google Ads
+                  </h6>
+                </small>
               </div>
-              <small>Google Ads</small>
               <p>
-                Engage your audience through strategic email marketing campaigns.
+                Engage your audience through strategic email marketing <br> campaigns.
               </p>
               <a href="google-ads.php">DISCOVER MORE</a>
             </div>
             <!-- end col-4 -->
             <div class="col-md-4 col-sm-4 col-12 wow fadeIn" data-wow-delay="0.4s">
-              <div class="color-6">
-                <img src="images/icon03.png" alt="Image">
+              <div class="spotify-promotions">
+                <i class="fab fa-spotify"></i>
+                <small>
+                  <h6>
+                    Spotify Promotions
+                  </h6>
+                </small>
               </div>
-              <small>Spotify Promotions</small>
               <p>
                 We create captivating content to tell your music's story and connect with fans.
               </p>
